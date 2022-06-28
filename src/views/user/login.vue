@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="at-ligon-background">
+  <q-layout dir="rtl" view="lHh Lpr lFf" class="at-ligon-background">
     <!-- <q-page-container class="col-12">
       <section class="row">
         <div class="col-md-7 main-pic gt-md"></div>
@@ -64,8 +64,8 @@
       </section>
     </q-page-container> -->
 
-        <q-page-container class="at-login">
-          <div class="row">
+        <q-page-container v-if="!isMobile()" class="at-login">
+          <div  class="row">
             <div class="col-3"></div>
             <!-- قسمت تبلیغات صفحه ثبت نام -->
             <div class="col-3" >
@@ -170,7 +170,85 @@
           </div>
 
         </q-page-container>
+        <q-page-container style="margin:30px" v-else class="at-login">
+          
+            <!-- قسمت اصلی -->
+            <div class="col-3">
+              <div class="at-login-form q-pa-lg">
+                <div class="text-right">
+                  <router-link class="at-back-btn"  to="/">
+                    بازگشت
+                  </router-link>
+                </div>
+                <div class="column items-center justify-center q-my-sm">
+                  <div class="at-logo">
+                    <img src="" alt="">
+                  </div>
+                  <div class="at-titr-form ">
+                    <div>
+                      <h5 class="at-titr-x">
+                        آنلاین خوان
+                      </h5>
+                    </div>
+                  </div>
+                  <div>
+                    <p class="q-mt-sm">
+                      آزمون سازی و ارزشیابی هوشمند
+                    </p>
+                  </div>
+                </div>
 
+                <div class="at-form q-my-sm">
+                  <q-field :error="$v.loginUser.Username1.$error" error-label="لطفا یک نام کاربری صحیح وارد کنید">
+                    <q-input 
+                    autofocus
+                    @blur="$v.loginUser.Username1.$touch"
+                    v-model.trim="loginUser.Username1" float-label="نام کاربری" />
+                  </q-field>
+
+                  
+                  <q-field :error="$v.loginUser.Password1.$error" error-label="لطفا یک رمز عبور صحیح وارد کنید">
+                    <q-input 
+                    @blur="$v.loginUser.Password1.$touch"
+                    v-model.trim="loginUser.Password1" type="password" float-label="رمز عبور" />
+                  </q-field>
+
+                  <div class="row q-my-md">
+
+                    <q-checkbox label="مرا به خاطر بسپار"  v-model="checked"/>
+
+                    <router-link to="/user/forgotpassword"  class="at-forget-pass">
+                      رمز عبورم را فراموش کرده ام
+                    </router-link>
+                    
+                  </div>
+
+                </div>
+
+                <div class="at-controls column justify-center items-center">
+                    <div class="q-my-sm">
+                      <q-btn 
+                      @click="login"
+                      class="at-login-btn">
+                        ورود
+                      </q-btn>
+                    </div>
+                    <div class="at-signup-btn q-my-sm">
+                      <p>
+                        هنوز در سایت ثبت نام نکرده اید؟
+                        <q-btn flat to="/user/register">
+                          ثبت نام در سایت
+                        </q-btn>
+                      </p>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-3"></div>
+
+        </q-page-container>
         
 
   </q-layout>
@@ -208,9 +286,17 @@ export default class UserLoginVue extends Vue {
     //this.userStore.resetRegisterModal();
     this.userStore.OPEN_MODAL_REGISTER(true);
   }
-  
+  isMobile() {
+   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+     return true
+   } else {
+     return false
+   }
+ }
   //--------------------------------------------------
 }
+
+  
 </script>
 
 <style>
@@ -288,7 +374,6 @@ a{
 .at-titr-x:after {
  background-color: #42a5f5;
  content: "";
- display: inline-block;
  height: 1px;
  position: relative;
  vertical-align: middle;

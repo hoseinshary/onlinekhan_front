@@ -1,7 +1,7 @@
 import Vue from "Vue";
 import ITopic, { DefaultTopic } from "src/models/ITopic";
 import IMessageResult from "src/models/IMessageResult";
-import axios, { AxiosResponse } from "src/plugins/axios";
+import axios, { AxiosResponse } from "src/plugins/axiosQuestion";
 import { MessageType } from "src/utilities/enumeration";
 import { TOPIC_URL as baseUrl } from "src/utilities/site-config";
 import util from "src/utilities";

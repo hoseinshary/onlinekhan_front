@@ -70,6 +70,11 @@ Router.beforeEach((to, from, next) => {
     next();
     title = document.title = "چاپ مبحث";
   }
+
+  if (controller == "user" && action == "logout") {
+    next();
+    title = document.title = "خروج";
+  }
   if (controller == "studentmajorlist" && action == "printMajorList".toLowerCase()) {
     next();
     title = document.title = "چاپ لیست انتخاب رشته";
@@ -91,32 +96,8 @@ Router.beforeEach((to, from, next) => {
       pathForEvaluate += element;
     }
   });
-  if (
-    !authList ||
-    !authList.filter(
-      x =>
-        x.replace(/\//g, "").toLowerCase() == pathForEvaluate.replace(/\//g, "")
-    ).length
-  ) {
-    next("/user/login");
-    util.logout();
-    title = document.title = "ورود";
-  } else {
-    next();
     
-    var subMenu = subMenuList.find(x =>
-      x.EnName.toLowerCase().includes(action) && x.EnName.toLowerCase().includes(controller)
-    );
-
-    if (!subMenu) {
-      subMenu = subMenuList.find(x => x.EnName.toLowerCase().endsWith(controller));
-    }
-
-    if (subMenu) {
-      title = document.title = subMenu.FaName;
-      LocalStorage.set("title", title);
-    }
-  }
+    next();
 });
 
 export default Router;

@@ -1,0 +1,74 @@
+@import "dashboard.css";
+
+.prodBorder {
+    border-left: 2px solid #c2c2c2;
+    height: 100px;
+    align-items: center;
+}
+
+.prodImg {
+    height: 100px;
+    width: 70px;
+}
+
+
+.prodImg-search {
+    position: absolute;
+    top: 33%;
+    left: 33%;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+}
+
+.prodImg:hover {
+    filter: grayscale(100%);
+    transition: opacity .2s ease-in-out;
+}
+
+.prodImg:hover .prodImg-search {
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
+}
+
+.modal-close {
+    top: -8px;
+    left: -8px;
+}
+
+.modal-header {
+    height: 45px !important;
+}
+
+.close-btn {
+    left: 15px;
+    top: 15px;
+    margin: auto;
+}
+
+.discount {
+    padding: 0 !important;
+    height: 40px !important;
+}
+
+.discount .btn {
+    border-radius: 5px 0 0 5px;
+    padding: 0px 0px !important;
+    width: 60%;
+    height: 40px;
+    line-height: 13px;
+}
+
+.discount input {
+    min-width: 10px;
+}
+
+/* Goltarash - css */
+.wallet-btn{
+    margin-top: 20px;
+    float: right;
+    }
+    .wallet-btn .form-check-input {
+        margin-right: 25px;
+    }
+
+

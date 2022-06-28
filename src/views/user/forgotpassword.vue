@@ -1,7 +1,7 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="at-ligon-background">
+  <q-layout  dir="rtl" view="lHh Lpr lFf" class="at-ligon-background">
 
-        <q-page-container class="at-login">
+        <q-page-container v-if="!isMobile()" class="at-login">
           <div class="row">
             <div class="col-3"></div>
             <!-- قسمت تبلیغات صفحه ثبت نام -->
@@ -107,7 +107,79 @@
           </div>
 
         </q-page-container>
-        
+         <q-page-container style="margin:30px" v-else class="at-login">
+         
+
+            <!-- قسمت اصلی -->
+            <div class="col-3">
+              <div class="at-login-form q-pa-lg">
+                <div class="text-right">
+                  <router-link class="at-back-btn"  to="/user/login">
+                    بازگشت
+                  </router-link>
+                </div>
+                <div class="column items-center justify-center q-my-sm">
+                  <div class="at-logo">
+                    <img src="" alt="">
+                  </div>
+                  <div class="at-titr-form ">
+                    <div>
+                      <h5 class="at-titr-x">
+                        آنلاین خوان
+                      </h5>
+                    </div>
+                  </div>
+                  <div>
+                    <p class="q-mt-sm">
+                      آزمون سازی و ارزشیابی هوشمند
+                    </p>
+                  </div>
+                </div>
+
+                <div class="at-form q-my-sm">
+                
+                    <base-input :model="$v.user.Mobile" 
+                    />
+                   
+                    <div class="row">
+                       <base-input :model="$v.user.VerificationCode" class="q-my-sm"/>
+                      <q-btn :disabled="this.verfication"
+                      @click="sendVerification" flat
+                      class="at-sm-btn q-my-sm">
+                        ارسال کد تایید
+                      </q-btn>
+                      
+                    </div>
+                    <base-input :model="$v.user.Password" type="password" class="q-my-sm"/>
+
+                   
+
+
+                  
+                </div>
+
+                <div class="at-controls column justify-center items-center">
+                    <div class="q-mt-lg">
+                      <q-btn 
+                      @click="register"
+                      class="at-login-btn">
+                        تغییر رمز عبور
+                      </q-btn>
+                    </div>
+                    <div class="at-signup-btn q-mt-sm">
+                        <q-btn flat to="/user/login">
+                           ورود به سایت
+                        </q-btn>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-3"></div>
+
+
+        </q-page-container>
 
   </q-layout>
 
@@ -150,6 +222,13 @@ export default class UserRegisterVue extends Vue {
     this.user.IsTeacher = this.isTeacher;
     this.userStore.forgotPassword(this);
   }
+  isMobile() {
+   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+     return true
+   } else {
+     return false
+   }
+ }
   //#endregion
 
 
@@ -253,7 +332,6 @@ a{
 .at-titr-x:after {
  background-color: #42a5f5;
  content: "";
- display: inline-block;
  height: 1px;
  position: relative;
  vertical-align: middle;

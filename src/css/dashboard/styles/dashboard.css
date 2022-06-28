@@ -1,0 +1,211 @@
+@import "style.css";
+
+.c-card {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+.img-profile {
+    width: 80px;
+    border-radius: 100%;
+    border: 2px solid #d9d9d9;
+    right: 12px;
+    bottom: -40px;
+}
+
+.img-profile img {
+    border-radius: 100%;
+}
+
+.container-tab .nav-tabs .nav-link {
+    border-radius: 10px !important;
+    color: #212529;
+    border: 1px solid #d9d9d9;
+}
+
+.container-tab .nav-tabs .nav-link.active {
+    background-image: linear-gradient(to right, #1976d2 , #17d292) !important;
+    color: #fff !important;
+}
+
+.link-arrow a {
+    background: linear-gradient(to right, #1976d2, #17d292);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.basket-img img {
+    width: 40px;
+    border-radius: 100%;
+}
+
+
+/* GOLTARASH */
+.height-M{
+    height: 70px !important;
+}
+@media only screen and (max-width: 996px) {
+    .c-card-M{
+        margin-top: 20px !important;
+    }
+  }
+
+  /*fateme tekrar*/
+/*popupQuestion start*/
+.popUpPage {
+    position: fixed;
+    top: 100px;
+    left: 20%;
+    right: 20%;
+    height: auto;
+    background-color: #1976d2;
+    display: none;
+    z-index: 100000000;
+    color: white;
+}
+
+.popUp-input {
+    display: block;
+    border: none;
+    margin: auto;
+    padding: 15px 0px;
+    width: 80%;
+}
+
+.popUp-span {
+    display: block;
+    border: none;
+    padding: 10px;
+    text-align: right;
+    width: 80%;
+    margin: auto;
+    padding: 15px 0px 10px 0px;
+}
+
+.popUp-btn {
+    background-color: #17d292;
+    color: #ffffff;
+    padding: 12px 40px;
+    border-radius: 13px;
+    border: none;
+    font-size: 24px;
+}
+
+.popUp-btn-div {
+    width: 80%;
+    margin: auto;
+    padding: 20px 0px !important;
+}
+
+.popUp-img {
+    position: absolute;
+    left: 3%;
+    top: 3%;
+    width: 40%;
+    height: auto;
+    max-width: 30px;
+    max-height: 30px;
+}
+
+/*popupQuestion end*/
+/*wallet & question start*/
+.bill {
+    margin-top: 20px !important;
+}
+
+.bill .question {
+    margin: 0 5px !important;
+}
+
+.wallet {
+    color: #1976d2;
+}
+
+.wallet-question {
+    padding-right: 0;
+    padding-left: 18px;
+}
+
+.wallet-question section {
+    height: auto;
+    width: auto;
+    box-shadow: 0px 0px 10px 5px rgba(217, 217, 217, 0.8);
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 7px;
+}
+
+#question-send {
+    width: 65%;
+}
+
+.question-title {
+    margin-top: 0px !important;
+    padding: 10px;
+}
+
+.question-text {
+    line-height: 18px;
+    padding: 10px;
+}
+
+#question-button {
+    color: #ffffff;
+    background-color: #17d292;
+    padding: 10px 30px;
+    border: none;
+    margin: 8px;
+    max-width: 40%;
+}
+
+.mainLayout {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.mainLayout section {
+    margin-bottom: 15px;
+}
+
+.mainLayout-btn {
+    width: 100%;
+    margin-top: 40px;
+    min-width: auto;
+}
+
+.vl {
+    border-left: 2px solid #c2c2c2;
+}
+
+.verticalLine {
+    height: 30px;
+    border-left: 2px #c2c2c2 solid
+}
+.notification-icon .fa-bell{
+    font-size: 24px !important;
+}
+.container-profile-menu button span,.container-profile-menu ul li {
+    font-size: 14px !important;
+}
+.course-category ul li, .course-category ul li span,.search-category input{
+    font-size: 14px !important;
+}
+/*wallet & question end*/
+/*fateme tekrar*/
+/*fateme tekrar*/
+/*wallet & question responsive start*/
+@media only screen and (max-width: 768px) {
+
+    .wallet-question {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+
+    #question-send {
+        width: 30%;
+    }
+}
+
+/*wallet & question responsive end*/
+/*fateme tekrar*/

@@ -45,6 +45,12 @@ export default [
     name: "newview",
     component: () => import(/* webpackChunkName: "newview" */"src/views/newview/index.vue")
   },
+ 
+  {
+    path: "/user/logout",
+    name: "logout",
+    component: () => import(/* webpackChunkName: "lesson" */"src/views/user/logout.vue")
+  },
   {
     path: "",
     name:"layouts",
@@ -272,8 +278,30 @@ export default [
       {
         path: "/dashboard",
         name: "dashboard",
-        component: () => import(/* webpackChunkName: "educationSubGroup" */"src/views/dashboard/index.vue")
+        component: () => import(/* webpackChunkName: "dashboard" */"src/views/dashboard/index.vue")
+      },
+      {
+        path: "/shoppingbag",
+        name: "shoppingbag",
+        component: () => import(/* webpackChunkName: "shoppingbag" */"src/views/shoppingbag/index.vue")
+      },
+      {
+        path: "/shoppingbag/afterPurchase",
+        name: "afterPurchase",
+        component: () => import(/* webpackChunkName: "afterPurchase" */"src/views/shoppingbag/afterPurchase.vue")
+      },
+      {
+        path: "/quiz/lesson",
+        name: "quizlesson",
+        component: () => import(/* webpackChunkName: "afterPurchase" */"src/views/quiz/lesson.vue")
+      },
+      {
+        path: "/quiz/course",
+        name: "quizcourse",
+        component: () => import(/* webpackChunkName: "afterPurchase" */"src/views/quiz/course.vue")
       }
+      
+      
     ]
 
   },

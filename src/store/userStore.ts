@@ -3,7 +3,8 @@ import IUser, { DefaultUser } from "src/models/IUser";
 import IUserChangePassword, { DefaultUserChangePassword } from "src/models/IUserChangePassword";
 import ILogin, { DefaultLogin } from "src/models/ILogin";
 import IMessageResult from "src/models/IMessageResult";
-import axios, { AxiosResponse } from "src/plugins/axios";
+import axios, { AxiosResponse } from "src/plugins/axiosSSO";
+import axioss from "src/plugins/axios";
 import { MessageType } from "src/utilities/enumeration";
 import { USER_URL as baseUrl } from "src/utilities/site-config";
 import util from "src/utilities";
@@ -17,6 +18,7 @@ import {
 import { LocalStorage } from "quasar";
 import router from "src/router";
 import { runInThisContext } from "vm";
+import { log } from "console";
 
 @Module({ namespacedPath: "userStore/" })
 export class UserStore extends VuexModule {
@@ -480,6 +482,15 @@ export class UserStore extends VuexModule {
   }
 
   @action()
+  async logout(vm: Vue) {
+          axios.defaults.headers.common["Token"] = "";
+          axioss.defaults.headers.common["Token"] = "";
+          LocalStorage.set("Token", "");
+          LocalStorage.set("FullName", "");
+          LocalStorage.set("ProfilePic", "");
+          router.push("/user/login");
+  }
+  @action()
   async login(vm: Vue) {
     var data = {
       Username: this.loginUser.Username1,
@@ -496,12 +507,13 @@ export class UserStore extends VuexModule {
 
         if (data.MessageType == MessageType.Success) {
           axios.defaults.headers.common["Token"] = data.Token;
+          axioss.defaults.headers.common["Token"] = data.Token;
           LocalStorage.set("Token", data.Token);
           LocalStorage.set("FullName", data.FullName);
           LocalStorage.set("ProfilePic", data.ProfilePic);
+          LocalStorage.set("IsTeacher",data.IsTeacher);
           
-          
-          router.push(data.DefaultPage);
+          router.push("/dashboard");
         } else {
           this.notify({ vm, data });
         }
@@ -544,6 +556,7 @@ export class UserStore extends VuexModule {
   async sendVerification(vm: Vue) {
     if(this.user.Mobile == "" || this.user.Mobile == null) return;
 
+    console.log(baseUrl);
     return axios.post(`${baseUrl}/SendVerificationCode?PhoneNumber=`+this.user.Mobile)
     .then((response: AxiosResponse<IMessageResult>) => {
       let data = response.data;
