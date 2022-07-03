@@ -9,14 +9,13 @@ module.exports = function(ctx) {
     css: ["app.styl"],
     extras: [
       ctx.theme.mat ? "roboto-font" : null,
-      "material-icons", // optional, you are not bound to it
+      "material-icons" // optional, you are not bound to it
       // 'ionicons',
       // 'mdi',
-      "fontawesome"
     ],
     supportIE: true,
     build: {
-      rtl: true,
+      rtl: false,
       scopeHoisting: true,
       vueRouterMode: "history",
       // vueCompiler: true,

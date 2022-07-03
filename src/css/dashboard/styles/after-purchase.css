@@ -1,0 +1,58 @@
+@import "dashboard.css";
+
+.purchaseSuccess {
+    border: 1px solid #0abf81
+}
+
+.purchaseSuccess .title {
+    color: #0abf81;
+}
+
+.purchaseSuccess .text {
+    line-height: 22px;
+}
+
+.purchaseFail .text {
+    line-height: 22px;
+}
+
+.purchaseAlert .text {
+    line-height: 22px;
+}
+
+.fa-thumbs-up {
+    color: #0abf81;
+    border: 1px solid #0abf81;
+    top: -15px;
+    left: 20px;
+}
+
+.purchaseFail {
+    border: 1px solid #ff0048
+}
+
+.purchaseFail .title {
+    color: #ff0048;
+}
+
+.fa-light-emergency-on {
+    color: #ff0048;
+    border: 1px solid #ff0048;
+    top: -15px;
+    left: 20px;
+}
+
+.purchaseAlert {
+    border: 1px solid #ff6c00
+}
+
+.purchaseAlert .title {
+    color: #ff6c00;
+}
+
+.fa-diamond-exclamation {
+    color: #ff6c00;
+    border: 1px solid #ff6c00;
+    top: -15px;
+    left: 20px;
+}

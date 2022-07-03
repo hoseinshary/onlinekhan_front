@@ -1,7 +1,7 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="at-ligon-background">
+  <q-layout dir="rtl" view="lHh Lpr lFf" class="at-ligon-background">
 
-        <q-page-container class="at-login">
+        <q-page-container v-if="!isMobile()" class="at-login">
           <div class="row">
             <div class="col-3"></div>
             <!-- قسمت تبلیغات صفحه ثبت نام -->
@@ -146,6 +146,90 @@
           </div>
 
         </q-page-container>
+        <q-page-container style="margin:30px" v-else class="at-login">
+         
+           
+
+            <!-- قسمت اصلی -->
+            <div class="col-3">
+              <div class="at-login-form q-pa-lg">
+                <div class="text-right">
+                  <router-link class="at-back-btn"  to="/user/login">
+                    بازگشت
+                  </router-link>
+                </div>
+                <div class="column items-center justify-center q-my-sm">
+                  <div class="at-logo">
+                    <img src="" alt="">
+                  </div>
+                  <div class="at-titr-form ">
+                    <div>
+                      <h5 class="at-titr-x">
+                        آنلاین خوان
+                      </h5>
+                    </div>
+                  </div>
+                  <div>
+                    <p class="q-mt-sm">
+                      آزمون سازی و ارزشیابی هوشمند
+                    </p>
+                  </div>
+                </div>
+
+                <div class="at-form q-my-sm">
+                
+                    <base-input :model="$v.user.Mobile" 
+                    />
+                   
+                    <div class="row">
+                       <base-input :model="$v.user.VerificationCode" class="q-my-sm"/>
+                      <q-btn :disabled="this.verfication"
+                      @click="sendVerification" flat
+                      class="at-sm-btn q-my-sm">
+                        ارسال کد تایید
+                      </q-btn>
+                      
+                    </div>
+                    <base-input :model="$v.user.Password" type="password" class="q-my-sm"/>
+
+                    <base-input :model="$v.user.Name" align="right" class="q-my-sm"/>
+                    <base-input :model="$v.user.Family" align="right" class="q-my-sm"/>
+                      <div class="at-select-role q-my-sm">
+                     
+                        <q-radio 
+                        v-model="isTeacher" :val="false" color="secondary" label="دانش آموز" />
+                        <q-radio 
+                        v-model="isTeacher"
+                         :val="true" color="amber" label="معلم" style="margin-right:5.5rem;" />
+                    </div>
+
+                  
+                </div>
+
+                <div class="at-controls column justify-center items-center">
+                    <div class="q-mt-lg">
+                      <q-btn 
+                      @click="register"
+                      class="at-login-btn">
+                        ثبت نام
+                      </q-btn>
+                    </div>
+                    <div class="at-signup-btn q-mt-sm">
+                      <p>
+                        قبلا ثبت نام کرده ام .
+                        <q-btn flat to="/user/login">
+                           ورود به سایت
+                        </q-btn>
+                      </p>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-3"></div>
+
+        </q-page-container>
         
 
   </q-layout>
@@ -191,7 +275,13 @@ export default class UserRegisterVue extends Vue {
   }
   //#endregion
 
-
+ isMobile() {
+   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+     return true
+   } else {
+     return false
+   }
+ }
   //#region ### hooks ###
   //#endregion
 }
@@ -199,6 +289,25 @@ export default class UserRegisterVue extends Vue {
 </script>
 
 <style>
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../../css/fonts/iran-sans-fa-num.woff2') format('woff2'),
+    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../../css/fonts/iran-sans-fa-num-bold.woff2') format('woff2'),
+    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
+}
+
+body {
+    font-family: "IRANSans" !important;
+}
 *{
   margin: 0;
   padding: 0;
@@ -292,7 +401,6 @@ a{
 .at-titr-x:after {
  background-color: #42a5f5;
  content: "";
- display: inline-block;
  height: 1px;
  position: relative;
  vertical-align: middle;
