@@ -1,5 +1,6 @@
 <template>
 <div>
+         <link href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
 
 <div class="row pt-5">
           <div class="col-12 pb-2">
@@ -269,12 +270,17 @@
 <script>
 import router from "src/router";
 import axios from "src/plugins/axios";
+import { vxm } from "src/store";
+
 export default ({
+  
     data() {
          return {
             myLessons:{},
             selectedLessons:[],
-            state: 0
+            state: 0,
+           topicStore : vxm.topicStore,
+           topicList: {}
          }
     },
     methods:{
@@ -287,6 +293,9 @@ export default ({
     },
     mounted()
     {
+      
+      this.topicList = this.topicStore.fillListt();
+      console.log(this.topicList);
          axios.get(`/api/lesson_User/GetAllMyLesson`)
       .then(response => {
               this.myLessons = response.data;
@@ -444,7 +453,25 @@ function questionCountCalc() {
 </script>
 
 <style>
- @import '../../css/fonts/fontawesome.min.css';
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../../css/fonts/iran-sans-fa-num.woff2') format('woff2'),
+    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../../css/fonts/iran-sans-fa-num-bold.woff2') format('woff2'),
+    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
+}
+
+body {
+    font-family: "IRANSans" !important;
+}
  @import '../../css/dashboard/styles/style.css';
      @import '../../css/dashboard/styles/makeQuiz-selectCourse.css';
 </style>

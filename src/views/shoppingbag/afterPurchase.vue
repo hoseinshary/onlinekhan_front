@@ -112,5 +112,24 @@ question_send2.addEventListener("click", (e) => {
 </script>
 
 <style>
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../../css/fonts/iran-sans-fa-num.woff2') format('woff2'),
+    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../../css/fonts/iran-sans-fa-num-bold.woff2') format('woff2'),
+    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
+}
+
+body {
+    font-family: "IRANSans" !important;
+}
 @import '../../css/dashboard/styles/after-purchase.css';
 </style>

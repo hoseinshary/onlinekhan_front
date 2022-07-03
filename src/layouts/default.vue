@@ -48,7 +48,7 @@
             </a>
           </li>
           <li v-if="!this.IsTeacher">
-            <a href="#">
+            <a href="/lessons/buylesson">
               <div class="icon c-tooltip">
                 <i class="fa-solid fa-book"></i>
                 <span class="c-tooltip-text">خرید درس</span>
@@ -57,7 +57,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/lessons/mylessons">
               <div class="icon c-tooltip">
                 <i class="fa-solid fa-boxes-packing"></i>
                 <span class="c-tooltip-text">دروس من</span>
@@ -92,15 +92,6 @@
               <span class="link hide">گزارش آزمون ها</span>
             </a>
           </li>
-          <li v-if="!this.IsTeacher">
-            <a href="#">
-              <div class="icon c-tooltip">
-                <i class="fa-solid fa-chalkboard-user"></i>
-                <span class="c-tooltip-text">دبیر</span>
-              </div>
-              <span class="link hide">دبیر</span>
-            </a>
-          </li>
           <li v-if="this.IsTeacher">
             <a href="#">
               <div class="icon c-tooltip">
@@ -110,7 +101,7 @@
               <span class="link hide">گروه دانش آموزی</span>
             </a>
           </li>
-          <li>
+          <li v-if="!this.IsTeacher">
             <a href="/shoppingbag">
               <div class="icon c-tooltip">
                 <i class="fa-regular fa-basket-shopping"></i>
@@ -127,7 +118,7 @@
       </span>
 
     <div class="sidebar-footer d-flex">
-      <a href="#" class="log-out">
+      <a @click="$router.push('/user/logout')" class="log-out">
         <i class="fa-solid fa-power-off"></i>
       </a>
 
@@ -379,7 +370,7 @@ export default  {
      
     
     mounted() {
-      this.IsTeacher = !LocalStorage.get.item('IsTeacher');
+      this.IsTeacher = LocalStorage.get.item('IsTeacher');
         document.body.classList.add("shrink");
     const shrink_btn = document.querySelector(".shrink-btn");
 const shrink_mobile_show_btn = document.querySelector(".shrink-mobile-show-btn");
@@ -614,6 +605,25 @@ import '../assets/js/bootstrap.bundle.min.js';
 </script>
 
 <style>
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../css/fonts/iran-sans-fa-num.woff2') format('woff2'),
+    url('../css/fonts/iran-sans-fa-num.woff') format('woff');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../css/fonts/iran-sans-fa-num-bold.woff2') format('woff2'),
+    url('../css/fonts/iran-sans-fa-num.woff') format('woff');
+}
+
+body {
+    font-family: "IRANSans" !important;
+}
   @import '../css/dashboard/styles/bootstrap.min.css';
   @import '../css/dashboard/styles/dashboard.css';
 

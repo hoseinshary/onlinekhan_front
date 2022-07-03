@@ -1,44 +1,13 @@
 <template>
 <div>
-    <div class="mainLayout bg-f2f2f2">
-                <!--fateme tekrar-->
-                <div class="card">
-                  <div class="card-header d-flex flex-row justify-content-between height-100">
-                    <div class="d-flex flex-row justify-content-between align-items-start w-100">
-                      <div class="m-2">
-                        <i class="fa fa-star d-inline" aria-hidden="true"></i>
-                        <div class="fw-bold d-inline">
-                          مباحث مورد نظر خود را از
-                          دروس
-                          <span class="color-green">ریاضی 1</span>
-                          و
-                          <span class="color-green">فیزیک1</span>
-                          انتخاب بفرمایید:
-                        </div>
-                      </div>
-                      <i class="fa fa-question-circle p-all5 font-28 color-blue curser-point" aria-hidden="true"
-                        data-bs-toggle="modal" data-bs-target="#addStudentModal">
-                      </i>
-                    </div>
-                    <!--MODAL-->
-                    <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-body d-flex flex-row justify-content-center">
-                          <img src="../../assets/img/addStudent.jpg" width="auto" height="500"
-                            class="p-1 bg-white rounded-1" />
-                          <div class="position-relative">
-                            <img src="../../assets/img/close.png" width="auto" height="35"
-                              class="p-0 bg-white rounded-5 position-absolute modal-close curser-point" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--MODAL-->
-                  </div>
-                  <div class="card-body tab-content">
-                    <div class="tab-pane active" id="student-select">
-                       <section class="row col-md-12">
+       <q-tabs v-model="selectedTab" class="bg-white corner-around col-md-12 " inverted animated color="indigo-8"  >
+
+                  
+        <q-tab default v-for="lesson in this.assayCreate.Lessons" :key="lesson.Id" :name="lesson.Name" slot="title" :label="lesson.Name" class="bg-yellow-2"  />
+                  
+        <q-tab-pane v-for="lesson in this.assayCreate.Lessons" :key="lesson.Id" :name="lesson.Name">
+          <section class="row col-md-12">
+            <q-btn size="md" round dense color="secondary" icon="arrow_forward_ios" @click="checkList()" class="q-mr-xs" />
       <div class="col-md-12 shadow-1 q-ma-sm q-pa-sm">
          جابجایی ترتیب دروس 
          <q-btn size="md" round dense color="secondary" icon="arrow_forward_ios" @click="upList(lesson)" class="q-mr-xs" />
@@ -59,6 +28,7 @@
       
     <div class="col-12 shadow-1 q-ma-sm q-pa-sm">
       <q-tree
+        id="treeget"
         :nodes="topicStore.treeDataByLessonId(lesson.Id)"
         class="q-pt-lg"
         color="primary"
@@ -127,56 +97,16 @@
     </div>
     
   </section>
-                      <section class="d-flex flex-row mt-9 submit-group align-items-center justify-content-between"
-                        id="submit-group">
-                        <button class="btn btn-secondary text-white px-3 py-2 m-0 disabled font-14"
-                          id="student-group-select" disabled>
-                          <i class="fa fa-chevron-right m-0 p-0" aria-hidden="true"></i>
-                          <i class="fa fa-chevron-right ms-1 p-0" aria-hidden="true"></i>
-                          انتخاب درس آزمون
+        </q-tab-pane>
+       </q-tabs>
 
-                        </button>
-                        <button class="btn btn-success text-white px-3 py-2 m-0 font-14"
-                          id="test-lesson-select">تائید مباحث آزمون
-                          <i class="fa fa-chevron-left me-1 p-0" aria-hidden="true"></i>
-                          <i class="fa fa-chevron-left m-0 p-0" aria-hidden="true"></i>
-                        </button>
-                      </section>
-                    </div>
-                  </div>
-                </div>
-
-                <!--MODAL-->
-                <div class="modal fade" id="finalConfirm" tabindex="-1" aria-labelledby="exampleModalLabel"
-                  aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header border-0 bg-success position-relative text-white font-14">
-                        تایید نهایی
-                        <i class=" fa-light fa-times text-white fs-5 bg-success close-btn position-absolute"
-                          data-bs-dismiss="modal"></i>
-                      </div>
-                      <div class="modal-body d-flex flex-column m-2 font-14" id="studentGroupConfirmDataParent">
-                        هنوز درسی انتخاب نشده است
-                      </div>
-                      <div class="modal-footer border-0 d-flex flex-row">
-                        <button type="button" class="btn btn-success font-12" data-bs-dismiss="modal"
-                          id="confirmChanges">تایید
-                          و رفتن به مرحله بعد
-                        </button>
-                        <button type="button" class="btn btn-danger font-12" data-bs-dismiss="modal">بازگشت</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--MODAL-->
-                <button class="btn btn-success mt-2 font-12" id="finalConfirmButton" aria-hidden="true"
-                  data-bs-toggle="modal" data-bs-target="#finalConfirm">تایید نهایی</button>
-              </div>
+     
     </div>
+
+
+
+  
 </template>
-
-
 
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
@@ -194,7 +124,7 @@ export default class TopicTabVue extends Vue {
   topicStore = vxm.topicStore;
   studentStore = vxm.studentStore;
   assayCreate = vxm.assayStore.assayCreate;
-
+lessonStore = vxm.lessonStore;
 
   lessonsCurrent : Array<any> = []; 
   allTopicLeafTicked : Array<number> = [];
@@ -247,7 +177,11 @@ this.lessonsCurrent = this.assayCreate.Lessons.map((x) => ({
   }))
 
 }
-
+  checkList()
+  {
+    console.log("Here");
+    console.log(this.topicStore.treeDataByLessonId(34));
+  }
   upList(lesson : AssayLesson )
   {
     var currentLesson = this.assayCreate.Lessons.findIndex(x => x.Id === lesson.Id);
@@ -327,7 +261,10 @@ downList(lesson : AssayLesson )
   collapseTree(treeRef) {
     this.$refs[treeRef][0]["collapseAll"]();
   }
-
+  test()
+  {
+    console.log("RaminTest");
+  }
   topicWithDetail() {
     if (this.assayStore.IsDetailTopic) {
       this.studentStore.numberOfQuestionReportForTopic({ lessonIds: this.assayStore.lessonIds, studentId: 9 }).then(d => {
@@ -339,10 +276,15 @@ downList(lesson : AssayLesson )
 
   //#region ### hooks ###
   created() {
-    
+      
+        
+        this.assayCreate.Lessons.push(new AssayLesson(42, 'ریاضی ۱'));
         this.topicStore.fillList();
+
+        this.checkList();
 
   }
   //#endregion
 }
 </script>
+

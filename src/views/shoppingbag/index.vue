@@ -1,6 +1,6 @@
 <template >
     <div>
-      <link href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
+         <link href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
         <div class="row pt-5">
           <div class="col-12 pb-2">
             <h2 class="h3 g-dashboard font-16">سبد خرید</h2>
@@ -165,13 +165,13 @@
 import axios from "src/plugins/axios";
 import util from "src/utilities";
 import router from "src/router";
-
+import { LocalStorage } from "quasar";
 import { API_URL } from "src/utilities/site-config";
 export default  {
     
     data() {
        return {
-          packageids : [1,12,13],
+          packageids : [],
           tempDeleteId: -1,
           totalPrice: 0,
         packages:{}
@@ -210,12 +210,18 @@ export default  {
         removeItem()
         {
           this.packageids.splice(this.packageids.indexOf(this.tempDeleteId), 1);
+          var packs = LocalStorage.get.item('Shoppingbag');
+          LocalStorage.set('Shoppingbag',packs.filter(i=>i.Id != this.tempDeleteId));
           let i = this.packages.map(item => item.Id).indexOf(this.tempDeleteId); // find index of your object
           this.packages.splice(i, 1); // remove it from array;
           this.calculatePrice();
         },
         getPackages()
         {
+              var packs = LocalStorage.get.item('Shoppingbag');
+              if(packs !=  null)
+              {
+                 this.packageids = packs.map(x =>x.Id);
               var param = { ids: this.packageids };
             axios.get(`/api/package/GetPackages?`+util.toParam(param))
       .then(response => {
@@ -223,7 +229,7 @@ export default  {
               this.packages = response.data;
               this.calculatePrice();
       });
-
+              }
         }
     },
      
@@ -248,6 +254,25 @@ deleteFromBasket2.addEventListener("click", (e) => {
 </script>
 
 <style>
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../../css/fonts/iran-sans-fa-num.woff2') format('woff2'),
+    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../../css/fonts/iran-sans-fa-num-bold.woff2') format('woff2'),
+    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
+}
+
+body {
+    font-family: "IRANSans" !important;
+}
      @import '../../css/dashboard/styles/shopping-bag.css';
 </style>
 

@@ -5,6 +5,8 @@ import axios, { AxiosResponse } from "src/plugins/axiosQuestion";
 import { MessageType } from "src/utilities/enumeration";
 import { TOPIC_URL as baseUrl } from "src/utilities/site-config";
 import util from "src/utilities";
+import { LocalStorage } from "quasar";
+
 import {
   VuexModule,
   mutation,
@@ -227,18 +229,23 @@ export class TopicStore extends VuexModule {
       });
   }
 
+
+  @action()
+  async fillListt() {
+    
+    axios
+    .get(`${baseUrl}/GetAll`)
+    .then((response: AxiosResponse<Array<ITopic>>) => {
+      this.SET_LIST(response.data);
+      this.MODEL_CHANGED(false);
+      console.log("Here");
+      return(response.data);
+    });
+  }
+  
   @action()
   async fillList() {
-    if (this._modelChanged) {
-      return axios
-        .get(`${baseUrl}/GetAll`)
-        .then((response: AxiosResponse<Array<ITopic>>) => {
-          this.SET_LIST(response.data);
-          this.MODEL_CHANGED(false);
-        });
-    } else {
-      return Promise.resolve(this._topicList);
-    }
+      console.log(this._topicList);
   }
 
 

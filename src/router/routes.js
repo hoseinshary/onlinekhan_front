@@ -299,6 +299,16 @@ export default [
         path: "/quiz/course",
         name: "quizcourse",
         component: () => import(/* webpackChunkName: "afterPurchase" */"src/views/quiz/course.vue")
+      },
+      {
+        path: "/lessons/buylesson",
+        name: "buylesson",
+        component: () => import(/* webpackChunkName: "afterPurchase" */"src/views/lessons/buylesson.vue")
+      },
+      {
+        path: "/lessons/mylessons",
+        name: "mylessons",
+        component: () => import(/* webpackChunkName: "afterPurchase" */"src/views/lessons/mylessons.vue")
       }
       
       
