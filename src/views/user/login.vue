@@ -102,7 +102,7 @@
                 </div>
                 <div class="column items-center justify-center q-my-sm">
                   <div class="at-logo">
-                    <img src="" alt="">
+                    <img src="../../assets/img2/quasar-logo.png" alt="">
                   </div>
                   <div class="at-titr-form ">
                     <div>
