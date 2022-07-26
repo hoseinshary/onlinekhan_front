@@ -238,7 +238,7 @@ export class TopicStore extends VuexModule {
     .then((response: AxiosResponse<Array<ITopic>>) => {
       this.SET_LIST(response.data);
       this.MODEL_CHANGED(false);
-      console.log("Here");
+      console.log(response.data);
       return(response.data);
     });
   }

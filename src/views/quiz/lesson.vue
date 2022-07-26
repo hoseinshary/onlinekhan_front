@@ -1,7 +1,5 @@
 <template>
 <div>
-         <link href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
-
 <div class="row pt-5">
           <div class="col-12 pb-2">
             <h2 class="h3 g-dashboard font-16">ساخت آزمون</h2>
@@ -55,10 +53,10 @@
               <!--fateme tekrar tags-start-->
               <section class="col d-flex flex-row justify-content-between mb-3 mt-2 tagsContainer">
                
-                <a-make-quiz class="make-quiz font-12">انتخاب درس</a-make-quiz>
-                <a-make-quiz class="make-quiz disabled-tag  font-12">انتخاب مبحث</a-make-quiz>
-                <a-make-quiz class="make-quiz disabled-tag  font-12">انتخاب سوال</a-make-quiz>
-                <a-make-quiz class="make-quiz disabled-tag  font-12">ثبت آزمون</a-make-quiz>
+                <a-make-quiz id="selectedLesson" class="make-quiz font-12">انتخاب درس</a-make-quiz>
+                <a-make-quiz id="selectedCourse" class="make-quiz disabled-tag  font-12">انتخاب مبحث</a-make-quiz>
+                <a-make-quiz id="selectedQuestion" class="make-quiz disabled-tag  font-12">انتخاب سوال</a-make-quiz>
+                <a-make-quiz id="selectedSubmit" class="make-quiz disabled-tag  font-12">ثبت آزمون</a-make-quiz>
               </section>
               <!--fateme tekrar tags-end-->
 
@@ -206,8 +204,7 @@
                   <div class="card-body tab-content">
                     <div class="tab-pane active" id="student-select">
                       <section class="mx-5">
-                        محل قرار گیری انتخاب مباحث خود سایت
-                        <br/>
+                        <Course ></Course>
                       </section>
                       <section  class="d-flex flex-row mt-9 submit-group align-items-center justify-content-between"
                         id="submit-group">
@@ -218,7 +215,7 @@
                           انتخاب درس آزمون
 
                         </button>
-                        <button class="btn btn-success text-white px-3 py-2 m-0 font-14"
+                        <button @click="goToQuestion()" class="btn btn-success text-white px-3 py-2 m-0 font-14"
                           id="test-lesson-select">تائید مباحث آزمون
                           <i class="fa fa-chevron-left me-1 p-0" aria-hidden="true"></i>
                           <i class="fa fa-chevron-left m-0 p-0" aria-hidden="true"></i>
@@ -256,10 +253,170 @@
                   data-bs-toggle="modal" data-bs-target="#finalConfirm">تایید نهایی</button>
               </div>
               <!--end-->
+              <div v-if="this.state == 2" class="mainLayout bg-f2f2f2">
+                <div class="card">
+                  <div class="card-header d-flex flex-row justify-content-between height-100">
+                    <div class="d-flex flex-row justify-content-between align-items-start w-100">
+                      <div class="m-2">
+                        <i class="fa fa-star d-inline" aria-hidden="true"></i>
+                        <div class="fw-bold d-inline">
+                         سئوالات مورد نظر خود را برای آزمون انتخاب نمایید:
+                        </div>
+                      </div>
+                      <i class="fa fa-question-circle p-all5 font-28 color-blue curser-point" aria-hidden="true"
+                        data-bs-toggle="modal" data-bs-target="#addStudentModal">
+                      </i>
+                    </div>
+                    <!--MODAL-->
+                    <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-body d-flex flex-row justify-content-center">
+                          <img src="../../assets/img/addStudent.jpg" width="auto" height="500"
+                            class="p-1 bg-white rounded-1" />
+                          <div class="position-relative">
+                            <img src="../../assets/img/close.png" width="auto" height="35"
+                              class="p-0 bg-white rounded-5 position-absolute modal-close curser-point" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--MODAL-->
+                  </div>
+                  <div class="card-body tab-content">
+                    <div class="tab-pane active" id="student-select">
+                      <section class="mx-5">
+                        <Question></Question>
+                      </section>
+                      <section class="d-flex flex-row mt-9 submit-group align-items-center justify-content-between"
+                        id="submit-group">
+                        <button class="btn btn-secondary text-white px-3 py-2 m-0 disabled font-14"
+                          id="student-group-select" disabled>
+                          <i class="fa fa-chevron-right m-0 p-0" aria-hidden="true"></i>
+                          <i class="fa fa-chevron-right ms-1 p-0" aria-hidden="true"></i>
+                          انتخاب مبحث آزمون
 
+                        </button>
+                        <button @click="goToSubmit()" class="btn btn-success text-white px-3 py-2 m-0 font-14"
+                          id="test-lesson-select">تائید سئوالات آزمون
+                          <i class="fa fa-chevron-left me-1 p-0" aria-hidden="true"></i>
+                          <i class="fa fa-chevron-left m-0 p-0" aria-hidden="true"></i>
+                        </button>
+                      </section>
+                    </div>
+                  </div>
+                </div>
 
+                <!--MODAL-->
+                <div class="modal fade" id="finalConfirm" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header border-0 bg-success position-relative text-white font-14">
+                        تایید نهایی
+                        <i class=" fa-light fa-times text-white fs-5 bg-success close-btn position-absolute"
+                          data-bs-dismiss="modal"></i>
+                      </div>
+                      <div class="modal-body d-flex flex-column m-2 font-14" id="studentGroupConfirmDataParent">
+                        هنوز درسی انتخاب نشده است
+                      </div>
+                      <div class="modal-footer border-0 d-flex flex-row">
+                        <button type="button" class="btn btn-success font-12" data-bs-dismiss="modal"
+                          id="confirmChanges">تایید
+                          و رفتن به مرحله بعد
+                        </button>
+                        <button type="button" class="btn btn-danger font-12" data-bs-dismiss="modal">بازگشت</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--MODAL-->
+                <button class="btn btn-success mt-2 font-12" id="finalConfirmButton" aria-hidden="true"
+                  data-bs-toggle="modal" data-bs-target="#finalConfirm">تایید نهایی</button>
+              </div>
+              <div v-if="this.state == 3" class="mainLayout bg-f2f2f2">
+                <!--fateme tekrar-->
+                <div class="card">
+                  <div class="card-header d-flex flex-row justify-content-between height-100">
+                    <div class="d-flex flex-row justify-content-between align-items-start w-100">
+                      <div class="m-2">
+                        <i class="fa fa-star d-inline" aria-hidden="true"></i>
+                        <div class="fw-bold d-inline">
+                       ثبت نهایی آزمون
+                        </div>
+                      </div>
+                      <i class="fa fa-question-circle p-all5 font-28 color-blue curser-point" aria-hidden="true"
+                        data-bs-toggle="modal" data-bs-target="#addStudentModal">
+                      </i>
+                    </div>
+                    <!--MODAL-->
+                    <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-body d-flex flex-row justify-content-center">
+                          <img src="../../assets/img/addStudent.jpg" width="auto" height="500"
+                            class="p-1 bg-white rounded-1" />
+                          <div class="position-relative">
+                            <img src="../../assets/img/close.png" width="auto" height="35"
+                              class="p-0 bg-white rounded-5 position-absolute modal-close curser-point" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--MODAL-->
+                  </div>
+                  <div class="card-body tab-content">
+                    <div class="tab-pane active" id="student-select">
+                      <section class="mx-5">
+                        <Assay></Assay>
+                      </section>
+                      <section class="d-flex flex-row mt-9 submit-group align-items-center justify-content-between"
+                        id="submit-group">
+                        <button class="btn btn-secondary text-white px-3 py-2 m-0 disabled font-14"
+                          id="student-group-select" disabled>
+                          <i class="fa fa-chevron-right m-0 p-0" aria-hidden="true"></i>
+                          <i class="fa fa-chevron-right ms-1 p-0" aria-hidden="true"></i>
+                          انتخاب سئوالات آزمون
 
-              <!--fateme tekrar tabs-end-->
+                        </button>
+                        <button class="btn btn-success text-white px-3 py-2 m-0 font-14"
+                          id="test-lesson-select">ثبت نهایی آزمون
+                          <i class="fa fa-chevron-left me-1 p-0" aria-hidden="true"></i>
+                          <i class="fa fa-chevron-left m-0 p-0" aria-hidden="true"></i>
+                        </button>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+
+                <!--MODAL-->
+                <div class="modal fade" id="finalConfirm" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header border-0 bg-success position-relative text-white font-14">
+                        تایید نهایی
+                        <i class=" fa-light fa-times text-white fs-5 bg-success close-btn position-absolute"
+                          data-bs-dismiss="modal"></i>
+                      </div>
+                      <div class="modal-body d-flex flex-column m-2 font-14" id="studentGroupConfirmDataParent">
+                        هنوز درسی انتخاب نشده است
+                      </div>
+                      <div class="modal-footer border-0 d-flex flex-row">
+                        <button type="button" class="btn btn-success font-12" data-bs-dismiss="modal"
+                          id="confirmChanges">تایید
+                          و رفتن به مرحله بعد
+                        </button>
+                        <button type="button" class="btn btn-danger font-12" data-bs-dismiss="modal">بازگشت</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--MODAL-->
+                <button class="btn btn-success mt-2 font-12" id="finalConfirmButton" aria-hidden="true"
+                  data-bs-toggle="modal" data-bs-target="#finalConfirm">تایید نهایی</button>
+              </div>
+
             </div>
             </div>
         </section>
@@ -271,30 +428,54 @@
 import router from "src/router";
 import axios from "src/plugins/axios";
 import { vxm } from "src/store";
+import Course from "./course.vue"
+import Question from "./question.vue"
+import Assay from "./assay.vue"
+import { AssayLesson } from "src/models/IAssay";
 
 export default ({
-  
     data() {
          return {
             myLessons:{},
             selectedLessons:[],
             state: 0,
            topicStore : vxm.topicStore,
+          assayStore: vxm.assayStore,
            topicList: {}
          }
+    },
+    components: {
+    Course,
+    Question,
+    Assay
     },
     methods:{
        goToCourse()
        {
-        console.log("test");
            this.state = 1;
-
+           document.getElementById("selectedLesson").classList.add('disabled-tag');
+           document.getElementById("selectedCourse").classList.remove('disabled-tag');
+       },
+       goToQuestion()
+       {
+        this.assayStore.submitPreCreate().then(() => {
+        this.state = 2;
+        document.getElementById("selectedCourse").classList.add('disabled-tag');
+           document.getElementById("selectedQuestion").classList.remove('disabled-tag');
+        });
+       },
+       goToSubmit()
+       {
+           this.state = 3;
+           document.getElementById("selectedQuestion").classList.add('disabled-tag');
+           document.getElementById("selectedSubmit").classList.remove('disabled-tag');
        }
     },
     mounted()
     {
       
       this.topicList = this.topicStore.fillListt();
+      
       console.log(this.topicList);
          axios.get(`/api/lesson_User/GetAllMyLesson`)
       .then(response => {
@@ -306,7 +487,6 @@ var levelArray = []
 //lesson array
 var lessonArray = []
 
-var levelNames = [{ name: 'اول دبیرستان', id: 1 }, { name: 'دوم دبیرستان', id: 2 }, { name: 'سوم دبیرستان', id: 3 }]
 
 var questions = [
     { questions: [{ name: 'Q1' }, { name: 'Q2' }, { name: 'Q3' }], id: 1, lessonNameId: 1 },
@@ -395,9 +575,12 @@ function addName(x) {
         !str.includes(x.value) ?
             lessonArray.push(keyValue) : null
         updateLessonString()
-
+      vxm.assayStore._lessonList.push(new AssayLesson(x.id, x.value));
+      vxm.assayStore.assayCreate.Lessons.push(new AssayLesson(x.id, x.value));
     } else {
         lessonArray = lessonArray.filter(function (f) { return f.value !== x.value })
+        vxm.assayStore._lessonList  = vxm.assayStore._lessonList.filter(function (f) { return f.id !== x.id })
+      vxm.assayStore.assayCreate.Lessons  = vxm.assayStore.assayCreate.Lessons.filter(function (f) { return f.id !== x.id })
         updateLessonString()
     }
     updateLessonString()

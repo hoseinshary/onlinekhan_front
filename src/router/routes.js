@@ -52,6 +52,12 @@ export default [
     component: () => import(/* webpackChunkName: "lesson" */"src/views/user/logout.vue")
   },
   {
+    path: "/studentmajorlist",
+    name: "studentmajorlist",
+    component: () => import(/* webpackChunkName: "lesson" */"src/views/studentMajorList/index.vue")
+  },
+  
+  {
     path: "",
     name:"layouts",
     component: () => import(/* webpackChunkName: "layouts" */"layouts/default.vue"),
@@ -241,11 +247,6 @@ export default [
         component: () => import(/* webpackChunkName: "program" */"src/views/assay/AssayTeacher/index.vue")
       },
       {
-        path: "/StudentMajorList",
-        name: "studentMajorList",
-        component: () => import(/* webpackChunkName: "program" */"src/views/studentMajorList/index.vue")
-      },
-      {
         path: "/Assay/runAssay",
         name: "runAssay",
         component: () => import(/* webpackChunkName: "program" */"src/views/assay/runAssay.vue")
@@ -309,6 +310,21 @@ export default [
         path: "/lessons/mylessons",
         name: "mylessons",
         component: () => import(/* webpackChunkName: "afterPurchase" */"src/views/lessons/mylessons.vue")
+      },
+      {
+        path: "/quiz/myquiz",
+        name: "myquiz",
+        component: () => import(/* webpackChunkName: "afterPurchase" */"src/views/quiz/myquiz.vue")
+      },
+      {
+        path: "/reportTest",
+        name: "REPORT",
+        component: () => import("../views/report/reportBaseTest.vue")
+      },
+      {
+        path: "/reportQuestion",
+        name: "REPORT",
+        component: () => import("../views/report/reportBaseQuestion.vue")
       }
       
       

@@ -1,6 +1,8 @@
 <template>
   <bs-modal
     title="چاپ آزمون"
+    :show="true"
+    @close="assayStore.OPEN_MODAL_PRINT(false)"
   >
 
 

@@ -32,8 +32,13 @@ export class Major {
   Field:Field;
   Description:string;
   Apply : string;
-
-
+  ZirGoroh: number;
+  NoeGozinesh: number;
+  RotbeNahaei: number;
+  RotbeKeshvari: number;
+  RotbeKol: number;
+  IncludeYou:boolean;
+  Province: string;
   constructor(){
     this.Id =0;
     this.Course="";
@@ -47,6 +52,13 @@ export class Major {
     this.Field=Field["تجربی"];
     this.Description="";
     this.Apply= "";
+    this.RotbeNahaei=0;
+    this.RotbeKeshvari=0;
+    this.RotbeKol= 0;
+    this.ZirGoroh= 0;
+    this.NoeGozinesh= 0;
+    this.IncludeYou= false;
+    this.Province= "";
   }
 
 }

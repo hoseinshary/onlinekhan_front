@@ -1,5 +1,6 @@
 <template>
   <section class="col-md-10" >
+
     <div class="col-md-12 row">
      
       <div class="col-md-3 ">
@@ -167,7 +168,6 @@ export default class AssayAnswerSheetVue extends Vue {
   timestamp = "";
   timeleft = "";
 
-  pageAccess = util.getAccess(this.assayStore.modelName);
   
   //tempChoice: Array< string> = ["0","1","2","3" ,"4"];
   //#endregion
@@ -276,9 +276,10 @@ export default class AssayAnswerSheetVue extends Vue {
     
     // if(this.assay)
     
- 
+
     
   }
   //#endregion
 }
+
 </script>

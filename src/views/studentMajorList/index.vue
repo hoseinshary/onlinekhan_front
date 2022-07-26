@@ -1,9 +1,14 @@
-<template>
-  <section class="col-md-8">
+<template >
+  <section class="col-md-8" dir="rtl">
     <base-btn-create
       v-if="canCreate"
       :label="`ایجاد (${studentMajorListStore.modelName}) جدید`"
       @click="showModalCreate"
+    />
+     <base-btn-create
+      v-if="canCreate"
+      :label="`ویرایش اطلاعات انتخاب رشته`"
+      @click="showModalStudent"
     />
     <br />
     <base-table v-if="studentMajorListStore.gridData.length>0" :grid-data="studentMajorListStore.gridData" :columns="studentMajorListGridColumn" hasIndex>
@@ -27,6 +32,7 @@
 
     <!-- modals -->
     <modal-create v-if="canCreate"></modal-create>
+    <modal-updateStudent ></modal-updateStudent>
     <modal-edit v-if="canEdit"></modal-edit>
     <modal-delete v-if="canDelete"></modal-delete>
   </section>
@@ -43,7 +49,8 @@ import router from "src/router";
   components: {
     ModalCreate: () => import("./create.vue"),
     ModalEdit: () => import("./edit.vue"),
-    ModalDelete: () => import("./delete.vue")
+    ModalDelete: () => import("./delete.vue"),
+    ModalUpdateStudent: () => import("./updateStudent.vue")
   }
 })
 export default class StudentMajorListVue extends Vue {
@@ -71,19 +78,23 @@ export default class StudentMajorListVue extends Vue {
 
   //#region ### computed ###
   get canCreate() {
-    return this.pageAccess.indexOf("ایجاد") > -1;
+    return true;
   }
 
   get canEdit() {
-    return this.pageAccess.indexOf("ویرایش") > -1;
+    return true;
   }
 
   get canDelete() {
-    return this.pageAccess.indexOf("حذف") > -1;
+    return true;
   }
   //#endregion
 
   //#region ### methods ###
+  showModalStudent() {
+    //this.studentMajorListStore.resetCreate();
+    this.studentMajorListStore.OPEN_MODAL_UPDATESTUDENT(true);
+  }
   showModalCreate() {
     this.studentMajorListStore.resetCreate();
     this.studentMajorListStore.OPEN_MODAL_CREATE(true);
@@ -109,7 +120,26 @@ export default class StudentMajorListVue extends Vue {
 
   //#region ### hooks ###
   created() {
+    this.studentMajorListStore = vxm.studentMajorListStore;
     this.studentMajorListStore.fillList();
+    this.studentMajorListGridColumn = [
+    {
+      title: "نام لیست انتخاب رشته",
+      data: "Title"
+    },
+    {
+      title: "نام و نام خانوادگی",
+      data: "Student.User.Family"
+    },
+    {
+      title: "عملیات",
+      data: "Id",
+      searchable: false,
+      sortable: false,
+      visible: this.canEdit || this.canDelete
+    }
+    ]
+    console.log(this.studentMajorListStore.gridData);
   }
   //#endregion
 }

@@ -1,0 +1,55 @@
+@import "style.css";
+
+.mb-7 {
+    margin-bottom: 3rem;
+}
+
+.bg-transparent {
+    background-color: #ffffffc9 !important;
+}
+
+.bg-gray-dark {
+    background-color: #b5b6b8 !important;
+}
+
+.mh-200 {
+    max-height: 200px;
+}
+
+.c-card {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+.basket-img img {
+    width: 40px;
+    border-radius: 100%;
+}
+
+.border-gradient {
+    background: linear-gradient(to right, #1976d2 , #17d292);
+    padding: 4px;
+}
+
+.sidebar-filter::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar-filter::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebar-filter::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.sidebar-filter::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media only screen and (max-width: 996px) {
+    .c-card-M{
+        margin-top: 20px !important;
+    }
+}

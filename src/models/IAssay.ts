@@ -77,7 +77,7 @@ export class AssayLesson {
   constructor(lessonId: number, lessonName: string) {
     this.Id = lessonId;
     this.Name = lessonName;
-    this.Checked = false;
+    this.Checked = true;
     this.CountOfEasy = 0;
     this.CountOfMedium = 0;
     this.CountOfHard = 0;

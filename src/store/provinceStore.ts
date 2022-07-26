@@ -1,7 +1,7 @@
 import Vue from "Vue";
 import IProvince, { DefaultProvince } from "src/models/IProvince";
 import IMessageResult from "src/models/IMessageResult";
-import axios, { AxiosResponse } from "src/plugins/axios";
+import axios, { AxiosResponse } from "src/plugins/axiosSSO";
 import { MessageType } from "src/utilities/enumeration";
 import { PROVINCE_URL as baseUrl } from "src/utilities/site-config";
 import util from "src/utilities";

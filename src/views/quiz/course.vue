@@ -180,7 +180,9 @@ this.lessonsCurrent = this.assayCreate.Lessons.map((x) => ({
   checkList()
   {
     console.log("Here");
-    console.log(this.topicStore.treeDataByLessonId(34));
+    console.log(this.topicStore.treeDataByLessonId(54));
+    this.assayCreate.Lessons.push(new AssayLesson(54, 'ریاضی و آمار1'));
+    
   }
   upList(lesson : AssayLesson )
   {
@@ -278,10 +280,7 @@ downList(lesson : AssayLesson )
   created() {
       
         
-        this.assayCreate.Lessons.push(new AssayLesson(42, 'ریاضی ۱'));
-        this.topicStore.fillList();
 
-        this.checkList();
 
   }
   //#endregion

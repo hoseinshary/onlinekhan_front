@@ -37,6 +37,21 @@
 <div class="col-md-7 q-ml-sm">
    
     <base-table :grid-data="studentMajorListStore.gridDataMajor" :columns="MajorListGridColumn" hasIndex>
+      <template slot="NoeGozinesh" slot-scope="data">
+        <span v-if="data.row.NoeGozinesh == 1" >{{"ناحیه ای"}}</span>
+        <span v-if="data.row.NoeGozinesh == 2" >{{"قطبی"}}</span>
+        <span v-if="data.row.NoeGozinesh == 3" >{{"استانی"}}</span>
+        <span v-if="data.row.NoeGozinesh == 4" >{{"کشوری"}}</span>
+        <span v-if="data.row.NoeGozinesh == 0" >{{"نامشخص"}}</span>
+      </template>
+      <template slot="IncludeYou" slot-scope="data">
+        <q-btn v-if="data.row.NoeGozinesh != 0 && data.row.IncludeYou == true" class="s-btn-clear">
+          بله
+        </q-btn>
+        <q-btn v-else-if="data.row.NoeGozinesh != 0" class="s-btn-back">
+            خیر
+        </q-btn>
+      </template>
       <template slot="Id" slot-scope="data">
         <q-btn round color="secondary" icon="add" @click="addToTable(data.row.Id)"/>
 
@@ -195,7 +210,7 @@ export default class StudentMajorListEditVue extends Vue {
   largeList :boolean = false;
 
 
-  MajorListGridColumn = [
+ MajorListGridColumn = [
      {
       title: "نحوه پذیرش",
       data: "Apply"
@@ -209,6 +224,7 @@ export default class StudentMajorListEditVue extends Vue {
       data: "Code",
             searchable: true,
             sortable:true
+
     },
     {
       title: "نام رشته",
@@ -241,6 +257,31 @@ export default class StudentMajorListEditVue extends Vue {
     {
       title: "توضیحات",
       data: "Description"
+            
+    },
+    {
+      title: "رتبه زیرگروه سهمیه نهایی",
+      data: "RotbeNahaei"
+            
+    },
+    {
+      title: "رتبه زیرگروه کشوری",
+      data: "RotbeKeshvari"
+            
+    },
+    {
+      title: "رتبه زیرگروه کل نهایی",
+      data: "RotbeKol"
+            
+    },
+    {
+      title: "نوع گزینش",
+      data: "NoeGozinesh"
+            
+    },
+    {
+      title: "بومی هستید",
+      data: "IncludeYou"
             
     },
     {
