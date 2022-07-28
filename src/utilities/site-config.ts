@@ -1,9 +1,9 @@
 export const API_URL = "http://localhost:63839";
-//export const API_URL_SSO = "http://localhost:63840";
-export const API_URL_QUESTION = "http://localhost:63841";
+export const API_URL_SSO = "http://localhost:63840";
+//export const API_URL_QUESTION = "http://localhost:63841";
 //export const API_URL = "http://159.69.82.251:63839";
-export const API_URL_SSO = "http://159.69.82.251:63840";
-//export const API_URL_QUESTION = "http://159.69.82.251:63841";
+//export const API_URL_SSO = "http://159.69.82.251:63840";
+export const API_URL_QUESTION = "http://159.69.82.251:63841";
 
 export const CITY_URL = "/api/city";
 export const PROVINCE_URL = "/api/province";

@@ -234,7 +234,7 @@ export class TopicStore extends VuexModule {
   async fillListt() {
     
     axios
-    .get(`${baseUrl}/GetAll`)
+    .get(`${baseUrl}/GetAll3level`)
     .then((response: AxiosResponse<Array<ITopic>>) => {
       this.SET_LIST(response.data);
       this.MODEL_CHANGED(false);

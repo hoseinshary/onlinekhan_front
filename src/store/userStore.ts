@@ -575,7 +575,7 @@ export class UserStore extends VuexModule {
       .then((response: AxiosResponse<IMessageResult>) => {
         let data = response.data;
         this.notify({ vm, data });
-
+        console.log(response.data);
         if (data.MessageType == MessageType.Success) {
   
           this.resetRegister();

@@ -348,6 +348,7 @@ export default ({
        {
          var shoppingbag = LocalStorage.get.item('Shoppingbag');
          var pack = this.allpackages.find(pack => pack.Id === id);
+         shoppingbag = [];
          if(shoppingbag == null)
           shoppingbag = [];
           else{
@@ -370,7 +371,7 @@ export default ({
          console.log(LocalStorage.get.item('Shoppingbag'));
          Notify.create({
           progress: true,
-          message: pack.Name + 'به سبد خرید شما اضافه شد',
+          message: pack.Name + 'به سبد خرید شما اضافه شد ',
           color: 'green',
           actions: [
             { label: 'رفتن به سبد خرید', color: 'yellow', handler: () => { router.push('/shoppingbag') } }

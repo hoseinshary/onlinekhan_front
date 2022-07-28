@@ -99,10 +99,9 @@
                         :src="question.QuestionPicturePath"
                         class="img-original-width"
                       />
-                      <base-btn-create
-                        :label="`اضافه به آزمون`"
-                        
-                      />
+                      <base-btn-create v-if="showGreen(lesson.Id, question.Id)"  :label="`اضافه به آزمون`" @click="AddQuestion(lesson.Id, question)" />
+                                  <q-btn v-else :label="'حذف از آزمون'" @click="DeleteQuestion(lesson.Id, question)" rounded push color="negative" icon="remove"/>
+
                     </div>
 
                     <div class="col-md-2">
@@ -166,6 +165,7 @@ import AssayCreate, { AssayLesson } from "src/models/IAssay";
 import ILesson from "src/models/ILesson";
 import { assayStore } from "src/store/assayStore";
 import { lookupStore } from "src/store/lookupStore";
+import IMessageResult from "src/models/IMessageResult";
 
 import { debug } from "util";
 
@@ -215,7 +215,56 @@ export default class LessonTabVue extends Vue {
     });
   }
   //#endregion
+  get showGreen()
+  {
+    return (lessonId :number , questionId: number ): boolean =>{
+           var x = this.assayCreate.Lessons.find(x => x.Id === lessonId) 
+          if(x)
+          {
+            var y = x.Questions.find(z => z.Id === questionId)
+            if(y)
+              return false;
+            
+          }
+          return true;
+    }
+    
+  }
+  AddQuestion(lessonId :number , question )
+  {
+    var x = this.assayCreate.Lessons.find(x => x.Id === lessonId)
+    if(x)
+      if(!x.Questions.find( y => y.Id === question.Id))
+      {
+        x.Questions.push(question);
 
+         var data : IMessageResult = {
+        MessageType : 1 ,
+        Message : "سوال  "+ question.Id + "  اضافه شد "
+
+      }
+      this.assayStore.notify( {vm:this,data:data});
+      }
+
+  }
+
+    DeleteQuestion(lessonId :number , question )
+  {
+    var x = this.assayCreate.Lessons.find(x => x.Id === lessonId)
+    if(x)
+      if(x.Questions.find( y => y.Id === question.Id))
+      {
+        x.Questions.splice(x.Questions.findIndex( y => y.Id === question.Id),1);
+
+         var data : IMessageResult = {
+        MessageType : 2 ,
+        Message : "سوال  "+ question.Id + "  حذف شد "
+
+      }
+      this.assayStore.notify( {vm:this,data:data});
+      }
+
+  }
   //#region ### methods ###
   goToTopicTab() {
     this.$emit("changeTab", "topicTab");

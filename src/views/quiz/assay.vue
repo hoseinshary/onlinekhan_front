@@ -123,8 +123,8 @@ export default class AssayTabVue extends Vue {
 
   //#region ### methods ###
   getAllQuestions() {
-    this.assayStore.submitPreCreate().then(() => {
-      this.$emit("changeTab", "questionTab");
+    this.assayStore.submitCreate().then(() => {
+     // this.$emit("changeTab", "questionTab");
     });
   }
   //#endregion
