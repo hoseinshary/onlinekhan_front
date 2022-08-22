@@ -1,7 +1,7 @@
 import Vue from "Vue";
 import ICity, { DefaultCity } from "src/models/ICity";
 import IMessageResult from "src/models/IMessageResult";
-import axios, { AxiosResponse } from "src/plugins/axios";
+import axios, { AxiosResponse } from "src/plugins/axiosSSO";
 import { MessageType } from "src/utilities/enumeration";
 import { CITY_URL as baseUrl } from "src/utilities/site-config";
 import util from "src/utilities";

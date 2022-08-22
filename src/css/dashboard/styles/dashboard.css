@@ -41,6 +41,11 @@
 
 
 /* GOLTARASH */
+.border-gradient {
+    background: linear-gradient(to right, #1976d2 , #17d292);
+    padding: 4px;
+}
+
 .height-M{
     height: 70px !important;
 }

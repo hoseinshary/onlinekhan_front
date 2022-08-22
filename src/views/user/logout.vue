@@ -41,7 +41,7 @@
             <!-- قسمت اصلی -->
             <div class="col-3">
               <div class="at-login-form q-pa-lg">
-                <div class="text-right">
+                <div class="text-left">
                   <router-link class="at-back-btn"  to="/dashboard">
                     بازگشت
                   </router-link>
@@ -85,15 +85,12 @@
 
             <div class="col-3"></div>
           </div>
-
         </q-page-container>
         <q-page-container style="margin:30px" v-else class="at-login">
-         
-
             <!-- قسمت اصلی -->
             <div class="col-3">
               <div class="at-login-form q-pa-lg">
-                <div class="text-right">
+                <div class="text-left">
                   <router-link class="at-back-btn"  to="/dashboard">
                     بازگشت
                   </router-link>
@@ -182,25 +179,6 @@ export default class UserLoginVue extends Vue {
 </script>
 
 <style>
-@font-face {
-    font-family: IRANSans;
-    font-style: normal;
-    font-weight: normal;
-    src: url('../../css/fonts/iran-sans-fa-num.woff2') format('woff2'),
-    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
-}
-
-@font-face {
-    font-family: IRANSans;
-    font-style: normal;
-    font-weight: bold;
-    src: url('../../css/fonts/iran-sans-fa-num-bold.woff2') format('woff2'),
-    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
-}
-
-body {
-    font-family: "IRANSans" !important;
-}
 *{
   margin: 0;
   padding: 0;

@@ -81,7 +81,7 @@ export default ({
         },
         gotoLesson()
         {
-            router.push("/lesson");
+            router.push("/lessons/mylessons");
         }
     },
     mounted()

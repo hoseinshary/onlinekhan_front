@@ -3,7 +3,9 @@
     <q-pagination :max="max"
                   v-model="page"
                   :max-pages="perPage"
-                  @input='$emit("onPaginationChange", $event)' />
+                  @input='$emit("onPaginationChange", $event)' 
+                  class="paginationCss"
+                  />
   </section>
 </template>
 
@@ -39,3 +41,10 @@ export default {
   }
 };
 </script>
+<style scoped>
+.paginationCss{
+  width:10%;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+</style>>

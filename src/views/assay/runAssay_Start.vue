@@ -7,11 +7,7 @@
   >
 
 
-    <template slot="header">
-      <q-toolbar slot="header" color="warning" text-color>
-        <q-toolbar-title>شروع آزمون</q-toolbar-title>
-      </q-toolbar>
-    </template>
+  
 
     <slot>
        <section class="col-12 q-px-md">
@@ -21,7 +17,7 @@
     </slot>
 
     <template slot="footer">
-      <q-btn  dense color="primary" class="center q-mt-md" @click="closeModal" >
+      <q-btn  dense color="primary" class="center q-mt-md bg-1976d2" @click="closeModal" style="width:100%">
                   شروع آزمون
                 </q-btn>
     </template>

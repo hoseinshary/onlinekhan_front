@@ -27,6 +27,12 @@
       class="col-md-3"
      :options="historyDdl"
     />
+    <q-select
+      v-model="searchfilter.course"
+      float-label="دوره تحصیلی"
+      class="col-md-3"
+     :options="courseDdl"
+    />
       <q-input float-label="نام رشته/دانشگاه" v-model="searchfilter.nameFilter" />
        </div>
       <br/>
@@ -188,7 +194,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import { vxm } from "src/store";
 import { studentMajorListValidations } from "src/validations/StudentMajorListValidation";
-import { Field ,HistoryAssay } from "src/utilities/enumeration";
+import { Field ,HistoryAssay,CourseAssay } from "src/utilities/enumeration";
 import util from "src/utilities";
 import { Major } from "src/models/IStudentMajorList";
 import IMessageResult from "src/models/IMessageResult";
@@ -206,7 +212,7 @@ export default class StudentMajorListEditVue extends Vue {
   studentMajorListStore = vxm.studentMajorListStore;
   studentMajorList = vxm.studentMajorListStore.studentMajorList;
 
-   searchfilter ={ fieldFilter : Field["تجربی"], nameFilter : "" , history:HistoryAssay["با آزمون"]};
+  searchfilter ={ fieldFilter : Field["تجربی"], nameFilter : "" , history:HistoryAssay["با آزمون"],course:CourseAssay["روزانه"]};
   largeList :boolean = false;
 
 
@@ -259,6 +265,7 @@ export default class StudentMajorListEditVue extends Vue {
       data: "Description"
             
     },
+    /*
     {
       title: "رتبه زیرگروه سهمیه نهایی",
       data: "RotbeNahaei"
@@ -284,6 +291,7 @@ export default class StudentMajorListEditVue extends Vue {
       data: "IncludeYou"
             
     },
+    */
     {
       title: "عملیات",
       data: "Id",
@@ -338,6 +346,9 @@ get fieldDdl() {
 
    get historyDdl() {
     return util.enumToDdl(HistoryAssay);
+  }
+  get courseDdl() {
+    return util.enumToDdl(CourseAssay);
   }
   fillGrid(text:any)
   {

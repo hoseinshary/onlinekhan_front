@@ -4,7 +4,7 @@ import IMessageResult from "src/models/IMessageResult";
 import axios, { AxiosResponse } from "src/plugins/axios";
 import axiosSSO from "src/plugins/axiosSSO";
 
-import { HistoryAssay, MessageType } from "src/utilities/enumeration";
+import { HistoryAssay, CourseAssay,MessageType } from "src/utilities/enumeration";
 import { STUDENTMAJORLIST_URL as baseUrl } from "src/utilities/site-config";
 import IProvince from "src/models/IProvince";
 
@@ -322,8 +322,8 @@ export class StudentMajorListStore extends VuexModule {
     var data = {
       Field: searchfilter.fieldFilter,
       MajorTitle: searchfilter.nameFilter,
-      Apply: HistoryAssay[searchfilter.history]
-
+      Apply: HistoryAssay[searchfilter.history],
+      Course: CourseAssay[searchfilter.course]
     
     };
     return axios

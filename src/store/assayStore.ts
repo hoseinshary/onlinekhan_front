@@ -1,5 +1,6 @@
 import AssayCreate, { AssayLesson } from "src/models/IAssay";
 import Vue from "Vue";
+import router from "src/router";
 import {
   VuexModule,
   mutation,
@@ -339,6 +340,7 @@ get lessonChooseAllQuestioncount(){
 
         if (data.MessageType == MessageType.Success) {
           this.assayCreate.Id = data.Obj.Id;
+          router.push("/quiz/myquiz");
         }
       });
   }

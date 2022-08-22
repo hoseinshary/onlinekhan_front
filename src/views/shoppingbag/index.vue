@@ -51,7 +51,7 @@
                   <div class="row text-center mb-4 align-items-center mb-3" :id="pack.Id">
                     <div class="col-md-3 col-3 prodBorder">
                       <div class="prodImg mx-auto position-relative curser-point" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
+                        :data-bs-target="'#Modal'+pack.Id">
                         <img :src="'http://159.69.82.251:63839/Api/Package/GetPictureFile/'+pack.ImageFile" width="auto" height="100" />
                         <img src="../../assets/img/search.png" class="prodImg-search" width="30" height="30">
                       </div>
@@ -62,11 +62,11 @@
                       </div>
                     </div>
                     <!--MODAL-->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" :id="'Modal'+pack.Id" tabindex="-1" aria-labelledby="exampleModalLabel"
                       aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-body d-flex flex-row justify-content-center">
-                          <img src="../../assets/img/farsi.jpeg" width="auto" height="400"
+                          <img :src="'http://159.69.82.251:63839/Api/Package/GetPictureFile/'+pack.ImageFile" width="auto" height="400"
                             class="p-1 bg-white rounded-1" />
                           <div class="position-relative">
                             <img src="../../assets/img/close.png" width="auto" height="35"

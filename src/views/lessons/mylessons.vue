@@ -97,9 +97,11 @@
               </div>
               <div class="card-body px-2 py-3 d-flex flex-column h-105">
                 <h5 class="card-title font-14 fw-bold">{{pack.Name}}</h5>
+                <!--
                 <div class="d-flex align-items-end mt-auto">
                             <a style="cursor:pointer;" class="bg-gradient br-10 text-white text-center d-block w-100 font-12 py-1 curser-point">مشاهده درس</a>
                 </div>
+                -->
               </div>
 
               <div class="info position-absolute p-3 bg-white w-100">
@@ -154,14 +156,16 @@
                   </div>
                   <div class="d-flex flex-column mt-4">
                     
-                    
+                    <!--
                    <div class="d-flex align-items-end mt-auto">
                           <a style="cursor:pointer;" class="bg-gradient br-10 text-white text-center d-block w-100 font-12 py-1 curser-point">مشاهده درس</a>
                      </div>
+                     -->
                   </div>
 
                 </div>
               </div>
+              <hr/>
             </div>
             
           </div>

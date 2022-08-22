@@ -24,7 +24,12 @@
       class="col-md-3"
      :options="historyDdl"
     />
-
+    <q-select
+      v-model="searchfilter.course"
+      float-label="دوره تحصیلی"
+      class="col-md-3"
+     :options="courseDdl"
+    />
       <q-input float-label="نام رشته/دانشگاه" v-model="searchfilter.nameFilter" />
        </div>
       <br/>
@@ -188,7 +193,7 @@ import { vxm } from "src/store";
 import util from "src/utilities";
 
 import { studentMajorListValidations } from "src/validations/StudentMajorListValidation";
-import { Field  ,HistoryAssay} from "src/utilities/enumeration";
+import { Field  ,HistoryAssay,CourseAssay} from "src/utilities/enumeration";
 import { Major } from "src/models/IStudentMajorList";
 import IMessageResult from "src/models/IMessageResult";
 
@@ -205,7 +210,7 @@ export default class StudentMajorListCreateVue extends Vue {
 
   
 
-  searchfilter ={ fieldFilter : Field["تجربی"], nameFilter : "" , history:HistoryAssay["با آزمون"]};
+  searchfilter ={ fieldFilter : Field["تجربی"], nameFilter : "" , history:HistoryAssay["با آزمون"],course:CourseAssay["روزانه"]};
 
 
 
@@ -258,6 +263,7 @@ export default class StudentMajorListCreateVue extends Vue {
       data: "Description"
             
     },
+    /*
     {
       title: "رتبه زیرگروه سهمیه نهایی",
       data: "RotbeNahaei"
@@ -283,6 +289,7 @@ export default class StudentMajorListCreateVue extends Vue {
       data: "IncludeYou"
             
     },
+    */
     {
       title: "عملیات",
       data: "Id",
@@ -332,7 +339,9 @@ get getLargList()
    get historyDdl() {
     return util.enumToDdl(HistoryAssay);
   }
-
+  get courseDdl() {
+    return util.enumToDdl(CourseAssay);
+  }
   get selectedMajors()
   {
     return this.studentMajorList.Majors;

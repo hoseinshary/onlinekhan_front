@@ -1,6 +1,6 @@
 <template>
   <q-field :count="count" :helper="helper" :error-label="errorLabel()" :error="model.$error">
-    <section class="s-q-field-border">
+    <section >
       <label class="s-q-field-label">{{displayName}}</label>
       <div class="gutter-sm s-q-field-body">
         <slot :obj="model"></slot>

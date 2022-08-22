@@ -24,7 +24,7 @@
     <div id="sidebar-links" class="sidebar-links">
       <ul>
           <li>
-            <a href="#">
+            <a href="/dashboard">
               <div class="icon c-tooltip">
                 <i class="fa-solid fa-circle-user"></i>
                 <span class="c-tooltip-text">پروفایل</span>
@@ -36,6 +36,7 @@
               </div>
             </a>
           </li>
+          <!--
           <li>
             <a href="#">
               <div class="icon c-tooltip">
@@ -47,6 +48,7 @@
               <span class="link hide font-12">اعلان ها</span>
             </a>
           </li>
+          -->
           <li v-if="!this.IsTeacher">
             <a href="/lessons/buylesson">
               <div class="icon c-tooltip">
@@ -66,7 +68,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/quiz/lesson">
               <div class="icon c-tooltip">
                 <i class="fa-regular fa-file-signature"></i>
                 <span class="c-tooltip-text">ساخت آزمون</span>
@@ -75,7 +77,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/quiz/myquiz">
               <div class="icon c-tooltip">
                 <i class="fa-solid fa-envelope-open-text"></i>
                 <span class="c-tooltip-text">آزمون ها</span>
@@ -84,7 +86,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/report">
               <div class="icon c-tooltip">
                 <i class="fa-regular fa-file-magnifying-glass"></i>
                 <span class="c-tooltip-text">گزارش آزمون ها</span>
@@ -110,6 +112,15 @@
               <span class="link hide">سبد خرید</span>
             </a>
           </li>
+          <li>
+            <a href="#">
+              <div class="icon c-tooltip">
+                <i class="fa-regular fa-solid fa-headset"></i>
+                <span class="c-tooltip-text">تماس با پشتیبان</span>
+              </div>
+              <span class="link hide">تماس با پشتیبان</span>
+            </a>
+          </li>
         </ul>
     </div>
 
@@ -118,7 +129,7 @@
       </span>
 
     <div class="sidebar-footer d-flex">
-      <a @click="$router.push('/user/logout')" class="log-out">
+      <a style=" cursor:pointer;" @click="$router.push('/user/logout')" class="log-out">
         <i class="fa-solid fa-power-off"></i>
       </a>
 
@@ -142,7 +153,7 @@
       <ul class="nav me-auto container-menu">
         <li class="nav-item pe-2"><a href="#" class="nav-link link-dark px-2 header-font-color font-12 menu-item-hover">تماس با ما</a></li>
         <li class="nav-item pe-2"><a href="#" class="nav-link link-dark px-2 header-font-color font-12 menu-item-hover">درباره ما</a></li>
-        <li v-if="!this.IsTeacher" class="nav-item pe-2"><a href="/student/buylesson" class="nav-link link-dark px-2 header-font-color font-12 menu-item-hover">خرید پکیچ درسی</a></li>
+        <li v-if="!this.IsTeacher" class="nav-item pe-2"><a href="/lessons/buylesson" class="nav-link link-dark px-2 header-font-color font-12 menu-item-hover">خرید درس</a></li>
       </ul>
 
       <ul class="nav">
@@ -153,7 +164,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/assay" class="d-flex align-items-center text-decoration-none header-font-color menu-item-hover">
+          <a href="/quiz/lesson" class="d-flex align-items-center text-decoration-none header-font-color menu-item-hover">
             <span class="fs-6 pe-2 font-12">ساخت آزمون</span>
             <i class="fa-solid fa-address-card font-12"></i>
           </a>
@@ -175,16 +186,16 @@
                     <figure></figure>
                     <ul class="dropdown p-2 shadow">
                         <li>
-                            <a href="#"><i class="fa-thin fa-envelope-open fs-4 py-2"></i></a>
+                            <a href="#"><i class="fa-solid fa-book fs-4 py-2"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa-thin fa-envelope-open fs-4 py-2"></i></a>
+                            <a href="#"><i class="fa-solid fa-envelope-open-text fs-4 py-2"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa-thin fa-envelope-open fs-4 py-2"></i></a>
+                            <a href="#"><i class="fa-solid fa-basket-shopping fs-4 py-2"></i></a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa-thin fa-envelope-open fs-4 py-2"></i></a>
+                        <li class=" text-center">
+                            <a href="#"><i class="fa-regular fa-square-question fs-4 py-2"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -195,12 +206,13 @@
        <!-- لوگوی سایت -->
         <div class="row">
             <div class="col-6 col-md-3 col-lg-3 col-xl-2">
-                <a href="#" class="d-block container-logo">
+                <a href="/dashboard" class="d-block container-logo">
                     <img src="../assets/img/logo.png">
                 </a>
             </div>
             <!-- لگوی سایت -->
             <!-- منوی دسته بندی دروس -->
+            <!--
             <div class="col-3 col-md-5 col-lg-5 col-xl-5 pe-xl-4 ps-lg-4">
                 <div class="container-search-category h-100 align-items-center d-none d-lg-flex">
                     <div class="course-category position-relative align-items-center d-flex">
@@ -241,18 +253,20 @@
                     </div>
                 </div>
             </div>
+            -->
             <!-- پایان منوی دسته بندی دروس -->
 
        <!-- پروفایل کاربر آبی و سمت موبایل -->
-            <div class="col-3 col-md-4 col-lg-4 col-xl-5">
+            <div class="col-3 col-md-4 col-lg-4 col-xl-5 d-flex justify-content-start">
                 <div class="d-flex flex-row-reverse gap-3 align-items-center">
                     <div class="container-profile-menu d-flex h-100 align-items-center" dir="ltr">
+                      <!--
                         <div class="notification-icon pe-3 d-none d-lg-flex">
                             <i class="fa-regular fa-bell position-relative fs-1">
                                 <span class="badge bg-danger position-absolute iran-sans">3</span>
                             </i>
                         </div>
-
+                      -->
                         <span class="profile-mobile-btn d-flex d-lg-none text-white align-items-center justify-content-center">
                             <i class="fa-thin fa-user-large px-2"></i>
                         </span>
@@ -267,7 +281,7 @@
                             <i class="fa-regular fa-angle-down px-2 fs-5"></i>
                         </button>
                         <ul class="dropdown-menu text-end" aria-labelledby="dropdownMenu2">
-                                <li><button class="dropdown-item" type="button">پروفایل کاربر</button></li>
+                                <li><button @click="$router.push('/dashboard')" class="dropdown-item" type="button">پروفایل کاربر</button></li>
                                 <li><button @click="$router.push('/user/logout')" class="dropdown-item" type="button">خروج</button></li>
                             </ul>
                         </div>
@@ -344,10 +358,11 @@
       
     </main>
 
-    <div class="shrink-mobile-show-btn position-fixed pointer d-none">
+    
+  </div>
+  <div class="shrink-mobile-show-btn position-fixed pointer d-none">
       <i class="fa-regular fa-circle-user d-block shadow-lg rounded-circle"></i>
     </div>
-  </div>
     </q-layout>
   </div>
 </template>
@@ -627,6 +642,10 @@ body {
   @import '../css/dashboard/styles/bootstrap.min.css';
   @import '../css/dashboard/styles/dashboard.css';
 
+
+a {
+  text-decoration: none !important;
+}
 </style>
 
 

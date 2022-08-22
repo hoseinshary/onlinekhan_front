@@ -30,7 +30,7 @@
               <div class="col-md-6 col-lg-3 col-xl-2 mb-4">
                   <div class="dropdown dropdown-select-course">
                       <button type="button" class="btn dropdown-toggle align-items-center d-flex w-100 " data-bs-toggle="dropdown" aria-expanded="false">
-                          <span class="font-12">  انتخاب مقطع تحصیلی</span>
+                          <span id="spanmaghta" class="font-12">{{this.textmaghta}}</span>
                           <i class="fa-regular fa-angle-down px-2 fs-5 me-auto"></i>
                       </button>
                       <ul  class="dropdown-menu text-end font-12">
@@ -41,7 +41,7 @@
                <div v-if="this.IsMotavasete" class="col-md-6 col-lg-3 col-xl-2 mb-4">
                   <div class="dropdown dropdown-select-course">
                       <button type="button" class="btn dropdown-toggle align-items-center d-flex w-100" data-bs-toggle="dropdown" aria-expanded="false">
-                          <span class="font-12">انتخاب زیرشاخه تحصیلی</span>
+                          <span class="font-12">{{this.textzirshakhe}}</span>
                           <i class="fa-regular fa-angle-down px-2 fs-5 me-auto"></i>
                       </button>
                       <ul class="dropdown-menu text-end font-12">
@@ -53,7 +53,7 @@
               <div v-if="this.IsMotavasete" class="col-md-6 col-lg-3 col-xl-2 mb-4">
                   <div class="dropdown dropdown-select-course">
                       <button type="button" class="btn dropdown-toggle align-items-center d-flex w-100" data-bs-toggle="dropdown" aria-expanded="false">
-                          <span class="font-12">انتخاب گروه آموزشی تحصیلی</span>
+                          <span class="font-12">{{this.textgorohamoozeshi}}</span>
                           <i class="fa-regular fa-angle-down px-2 fs-5 me-auto"></i>
                       </button>
                       <ul class="dropdown-menu text-end font-12">
@@ -67,7 +67,7 @@
               <div class="col-md-6 col-lg-3 col-xl-2 mb-4">
                   <div class="dropdown dropdown-select-course">
                       <button type="button" class="btn dropdown-toggle align-items-center d-flex w-100" data-bs-toggle="dropdown" aria-expanded="false">
-                          <span class="font-12">انتخاب پایه تحصیلی</span>
+                          <span class="font-12">{{this.textpaye}}</span>
                           <i class="fa-regular fa-angle-down px-2 fs-5 me-auto"></i>
                       </button>
                       <ul class="dropdown-menu text-end font-12">
@@ -76,7 +76,12 @@
                       </ul>
                   </div>
               </div>
-            
+            <div  class="col-md-6 col-lg-3 col-xl-2 mb-4">
+                  <button :disabled="!buttonEnable"  @click="search()" type="button" class="btn bg-gradient text-white border-0 w-100 d-flex align-items-center h-48">
+                      <span class="font-12">جستجوی در فروشگاه</span>
+                      <i class="fa-regular fa-angles-left me-auto fs-5"></i>
+                  </button>
+              </div>
           </div>
 
           <!-- فروشگاه -->
@@ -212,17 +217,8 @@
                   <div class="px-2 mt-2 mb-4">
                     <span class="line d-block"></span>
                   </div>
-                  <div class="d-flex align-items-center">
-                    <div>
-                     <i class="fa-solid fa-star checked font-12"></i>
-                     <i class="fa-solid fa-star checked font-12"></i>
-                      <i class="fa-solid fa-star checked font-12"></i>
-                      <i class="fa-solid fa-star checked font-12"></i>
-                      <i class="fa-solid fa-star checked font-12"></i>
-                    </div>
-                   
-                  </div>
-                  <div class="d-flex flex-column mt-4">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex flex-column  align-items-center">
                     
 
                     <div class="d-flex align-items-center mt-auto">
@@ -234,9 +230,22 @@
                       
                     </div>
                   </div>
+                  <div class="d-flex align-items-center">
+                    <div>
+                     <i class="fa-solid fa-star checked font-12"></i>
+                     <i class="fa-solid fa-star checked font-12"></i>
+                      <i class="fa-solid fa-star checked font-12"></i>
+                      <i class="fa-solid fa-star checked font-12"></i>
+                      <i class="fa-solid fa-star checked font-12"></i>
+                    </div>
+                   
+                  </div>
+                  
+                  </div>
 
                 </div>
               </div>
+              <hr/>
             </div>
             
           </div>
@@ -286,13 +295,18 @@ export default ({
             showingCount: 18,
             pagination: 1, 
             pagenumber: 0,
-            sortState: 0
+            sortState: 0,
+            buttonEnable:false,
+            textmaghta:"انتخاب مقطع تحصیلی",
+            textpaye:"انتخاب پایه تحصیلی",
+            textzirshakhe:"انتخاب زیرشاخه تحصیلی",
+            textgorohamoozeshi:"انتخاب گروه آموزشی تحصیلی"
          }
     },
     methods:{
        getEducationTree()
        {
-         axiosQuestion.get(`/api/EducationTree/GetAll`)
+         axiosQuestion.get(`/api/EducationTree/GetAllSmall`)
       .then(response => {
               this.educationTree = response.data;
 
@@ -304,6 +318,11 @@ export default ({
        changeMaghta(id)
        {
          this.lastSelected = id;
+         this.textmaghta = this.educationTree.filter((edu)=> edu.Id == id)[0].Name;
+            this.textpaye="انتخاب پایه تحصیلی";
+            this.textzirshakhe="انتخاب زیرشاخه تحصیلی";
+            this.textgorohamoozeshi="انتخاب گروه آموزشی تحصیلی";
+            this.buttonEnable= false;
          if(id==38)
          {
 
@@ -324,18 +343,32 @@ export default ({
        {
          this.lastSelected = id;
          this.selectedGorohamoozeshi = this.educationTree.filter((edu)=> edu.ParentEducationTreeId == id);
+         this.textzirshakhe = this.educationTree.filter((edu)=> edu.Id == id)[0].Name
          this.selectedPaye = {};
+         this.buttonEnable = false;
+          this.textpaye="انتخاب پایه تحصیلی";
+            this.textgorohamoozeshi="انتخاب گروه آموزشی تحصیلی";
          
        },
        changeGoroh(id)
        {
         this.lastSelected = id;
         this.selectedPaye = this.educationTree.filter((edu)=> edu.ParentEducationTreeId == id);
+        this.textgorohamoozeshi = this.educationTree.filter((edu)=> edu.Id == id)[0].Name;
+        this.buttonEnable = false;
+         this.textpaye="انتخاب پایه تحصیلی";
        },
        changePaye(id)
        {
          this.lastSelected = id;
-         axios.get('/api/Package/GetAllByEducationTreeId?ids='+id).then((response) => {
+         this.textpaye =  this.educationTree.filter((edu)=> edu.Id == id)[0].Name;
+         this.buttonEnable = true;
+
+         
+       },
+       search()
+       {
+        axios.get('/api/Package/GetAllByEducationTreeId?ids='+this.lastSelected).then((response) => {
             this.allpackages = response.data;
            
             this.pagination = 1;
@@ -348,7 +381,6 @@ export default ({
        {
          var shoppingbag = LocalStorage.get.item('Shoppingbag');
          var pack = this.allpackages.find(pack => pack.Id === id);
-         shoppingbag = [];
          if(shoppingbag == null)
           shoppingbag = [];
           else{

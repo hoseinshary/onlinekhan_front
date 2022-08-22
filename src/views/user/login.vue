@@ -1,259 +1,176 @@
 <template>
   <q-layout dir="rtl" view="lHh Lpr lFf" class="at-ligon-background">
-    <!-- <q-page-container class="col-12">
-      <section class="row">
-        <div class="col-md-7 main-pic gt-md"></div>
-        <div class="col-lg-5 main-input q-pa-sm">
-          <section class="row justify-center content-center">
-            <div class="logo"></div>
-            <div class="col-xl-8 col-lg-9 col-md-10 col-sm-12 q-py-lg">
-              <q-input
-                v-model="loginUser.Username1"
-                placeholder="نام کاربری"
-                color="white"
-                :before="[
-                  {
-                    icon: 'person',
-                  }
-                ]"
-              />
+    <q-page-container v-if="!isMobile()" class="at-login">
+      <div class="row">
+        <div class="col-3"></div>
+        <!-- قسمت تبلیغات صفحه ثبت نام -->
+        <div class="col-3">
+          <div class="at-login-ad">
+            <div class="q-my-lg">
+              <h6 class="at-titr">صفحه ورود به سایت آنلاین خوان</h6>
+              <p class="at-description">خوشحالیم که دوباره به ما سر زدید.</p>
             </div>
-            <div class="col-xl-8 col-lg-9 col-md-10 col-sm-12 q-pb-lg">
+            <div class="at-login-suggestion">
+              <h5 class="at-titr">پیشنهاد ویژه امروز</h5>
+              <p class="q-my-sm">
+                میدونستی که میتونی تنها با یک کلیک از جدیدترین نمونه سوالات
+                استادت مطلع بشی ...
+              </p>
+              <router-link to="" class="q-my-sm">
+                اینجا رو کلیک کن ...!!!
+              </router-link>
+            </div>
+          </div>
+        </div>
+
+        <!-- قسمت اصلی -->
+        <div class="col-3">
+          <div class="at-login-form q-pa-lg">
+            <div class="text-left">
+              <router-link class="at-back-btn" to="/"> بازگشت </router-link>
+            </div>
+            <div class="column items-center justify-center q-my-sm">
+              <div class="at-logo">
+                <img src="" alt="" />
+              </div>
+              <div class="at-titr-form">
+                <div>
+                  <h5 class="at-titr-x">آنلاین خوان</h5>
+                </div>
+              </div>
+              <div>
+                <p class="q-mt-sm">آزمون سازی و ارزشیابی هوشمند</p>
+              </div>
+            </div>
+
+            <div class="at-form q-my-sm">
+              <q-field
+                :error="$v.loginUser.Username1.$error"
+                error-label="لطفا یک نام کاربری صحیح وارد کنید"
+              >
+                <q-input
+                  autofocus
+                  @blur="$v.loginUser.Username1.$touch"
+                  v-model.trim="loginUser.Username1"
+                  float-label="نام کاربری"
+                />
+              </q-field>
+
+              <q-field
+                :error="$v.loginUser.Password1.$error"
+                error-label="لطفا یک رمز عبور صحیح وارد کنید"
+              >
+                <q-input
+                  @blur="$v.loginUser.Password1.$touch"
+                  v-model.trim="loginUser.Password1"
+                  type="password"
+                  float-label="رمز عبور"
+                />
+              </q-field>
+
+              <div class="row q-my-md">
+                <q-checkbox label="مرا به خاطر بسپار" v-model="checked" />
+
+                <router-link to="forgotpassword" class="at-forget-pass">
+                  رمز عبورم را فراموش کرده ام
+                </router-link>
+              </div>
+            </div>
+
+            <div class="at-controls column justify-center items-center">
+              <div class="q-my-sm">
+                <q-btn @click="login" class="at-login-btn"> ورود </q-btn>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="at-signup-btn q-my-sm">
+                <p>
+                  هنوز در سایت ثبت نام نکرده اید؟
+                  <q-btn flat to="/user/register"> ثبت نام در سایت </q-btn>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3"></div>
+      </div>
+    </q-page-container>
+    <q-page-container style="margin: 30px" v-else class="at-login">
+      <!-- قسمت اصلی -->
+      <div class="col-3">
+        <div class="at-login-form q-pa-lg">
+          <div class="text-left">
+            <router-link class="at-back-btn" to="/"> بازگشت </router-link>
+          </div>
+          <div class="column items-center justify-center q-my-sm">
+            <div class="at-logo">
+              <img src="" alt="" />
+            </div>
+            <div class="at-titr-form">
+              <div>
+                <h5 class="at-titr-x">آنلاین خوان</h5>
+              </div>
+            </div>
+            <div>
+              <p class="q-mt-sm">آزمون سازی و ارزشیابی هوشمند</p>
+            </div>
+          </div>
+
+          <div class="at-form q-my-sm">
+            <q-field
+              :error="$v.loginUser.Username1.$error"
+              error-label="لطفا یک نام کاربری صحیح وارد کنید"
+            >
               <q-input
-                v-model="loginUser.Password1"
+                autofocus
+                @blur="$v.loginUser.Username1.$touch"
+                v-model.trim="loginUser.Username1"
+                float-label="نام کاربری"
+              />
+            </q-field>
+
+            <q-field
+              :error="$v.loginUser.Password1.$error"
+              error-label="لطفا یک رمز عبور صحیح وارد کنید"
+            >
+              <q-input
+                @blur="$v.loginUser.Password1.$touch"
+                v-model.trim="loginUser.Password1"
                 type="password"
-                placeholder="رمز عبور"
-                color="white"
-                @keyup.enter="login"
-                :before="[
-                  {
-                    icon: 'lock',
-                  }
-                ]"
+                float-label="رمز عبور"
               />
-            </div>
-            <div class="col-12 text-center">
-              <button class="q-ma-sm btn btn-login" @click="login">
-                ورود
-                <q-icon name="keyboard_backspace"></q-icon>
-              </button>
+            </q-field>
 
-              <button class="q-ma-sm btn btn-login bg-green" @click="openModalRegister">
-                <i class="fa fa-pencil-square q-mx-xs"></i>ثبت نام
-               </button>
+            <div class="row q-my-md">
+              <q-checkbox label="مرا به خاطر بسپار" v-model="checked" />
 
-               <div class="row center">
-              <router-link to="/resume/registration" class="q-ma-sm btn btn-contribute">همکاری با ما</router-link>
-               </div>
+              <router-link to="/user/forgotpassword" class="at-forget-pass">
+                رمز عبورم را فراموش کرده ام
+              </router-link>
+            </div>
+          </div>
+          <div class="at-controls column justify-center items-center">
+            <div class="q-my-sm">
+              <q-btn @click="login" class="at-login-btn"> ورود </q-btn>
+            </div>
+          </div>
 
-            </div>
-          </section>
-        </div>
-        <div class="col-12 footer-pic gt-md">
-          <span></span>
-          <div class="text-center">
-            <div class="line">
-              <span class="circle"></span>
-            </div>
-            <p>سامانه جامع آموزش</p>
-            <div class="line">
-              <span class="circle"></span>
+          <div class="row">
+            <div class="at-signup-btn q-my-sm">
+              <p>
+                هنوز در سایت ثبت نام نکرده اید؟
+                <q-btn flat to="/user/register"> ثبت نام در سایت </q-btn>
+              </p>
             </div>
           </div>
         </div>
-      </section>
-    </q-page-container> -->
+      </div>
 
-        <q-page-container v-if="!isMobile()" class="at-login">
-          <div  class="row">
-            <div class="col-3"></div>
-            <!-- قسمت تبلیغات صفحه ثبت نام -->
-            <div class="col-3" >
-              <div class="at-login-ad">
-                <div class="q-my-lg">
-                  <h6 class="at-titr">
-                    صفحه ورود به سایت آنلاین خوان
-                  </h6>
-                  <p class="at-description">
-                    خوشحالیم که دوباره به ما سر زدید.
-                  </p>
-                </div>
-                <div class="at-login-suggestion">
-                  <h5 class="at-titr">
-                    پیشنهاد ویژه امروز
-                  </h5>
-                  <p class="q-my-sm">
-                    میدونستی که میتونی تنها با یک کلیک از جدیدترین نمونه سوالات استادت مطلع بشی ...
-                  </p>
-                  <router-link to="" class="q-my-sm">
-                    اینجا رو کلیک کن ...!!!
-                  </router-link>
-                </div>
-              </div>
-            </div>
-
-            <!-- قسمت اصلی -->
-            <div class="col-3">
-              <div class="at-login-form q-pa-lg">
-                <div class="text-right">
-                  <router-link class="at-back-btn"  to="/">
-                    بازگشت
-                  </router-link>
-                </div>
-                <div class="column items-center justify-center q-my-sm">
-                  <div class="at-logo">
-                    <img src="../../assets/img2/quasar-logo.png" alt="">
-                  </div>
-                  <div class="at-titr-form ">
-                    <div>
-                      <h5 class="at-titr-x">
-                        آنلاین خوان
-                      </h5>
-                    </div>
-                  </div>
-                  <div>
-                    <p class="q-mt-sm">
-                      آزمون سازی و ارزشیابی هوشمند
-                    </p>
-                  </div>
-                </div>
-
-                <div class="at-form q-my-sm">
-                  <q-field :error="$v.loginUser.Username1.$error" error-label="لطفا یک نام کاربری صحیح وارد کنید">
-                    <q-input 
-                    autofocus
-                    @blur="$v.loginUser.Username1.$touch"
-                    v-model.trim="loginUser.Username1" float-label="نام کاربری" />
-                  </q-field>
-
-                  
-                  <q-field :error="$v.loginUser.Password1.$error" error-label="لطفا یک رمز عبور صحیح وارد کنید">
-                    <q-input 
-                    @blur="$v.loginUser.Password1.$touch"
-                    v-model.trim="loginUser.Password1" type="password" float-label="رمز عبور" />
-                  </q-field>
-
-                  <div class="row q-my-md">
-
-                    <q-checkbox label="مرا به خاطر بسپار"  v-model="checked"/>
-
-                    <router-link to="forgotpassword"  class="at-forget-pass">
-                      رمز عبورم را فراموش کرده ام
-                    </router-link>
-                    
-                  </div>
-
-                </div>
-
-                <div class="at-controls column justify-center items-center">
-                    <div class="q-my-sm">
-                      <q-btn 
-                      @click="login"
-                      class="at-login-btn">
-                        ورود
-                      </q-btn>
-                    </div>
-                    <div class="at-signup-btn q-my-sm">
-                      <p>
-                        هنوز در سایت ثبت نام نکرده اید؟
-                        <q-btn flat to="/user/register">
-                          ثبت نام در سایت
-                        </q-btn>
-                      </p>
-                    </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="col-3"></div>
-          </div>
-
-        </q-page-container>
-        <q-page-container style="margin:30px" v-else class="at-login">
-          
-            <!-- قسمت اصلی -->
-            <div class="col-3">
-              <div class="at-login-form q-pa-lg">
-                <div class="text-right">
-                  <router-link class="at-back-btn"  to="/">
-                    بازگشت
-                  </router-link>
-                </div>
-                <div class="column items-center justify-center q-my-sm">
-                  <div class="at-logo">
-                    <img src="" alt="">
-                  </div>
-                  <div class="at-titr-form ">
-                    <div>
-                      <h5 class="at-titr-x">
-                        آنلاین خوان
-                      </h5>
-                    </div>
-                  </div>
-                  <div>
-                    <p class="q-mt-sm">
-                      آزمون سازی و ارزشیابی هوشمند
-                    </p>
-                  </div>
-                </div>
-
-                <div class="at-form q-my-sm">
-                  <q-field :error="$v.loginUser.Username1.$error" error-label="لطفا یک نام کاربری صحیح وارد کنید">
-                    <q-input 
-                    autofocus
-                    @blur="$v.loginUser.Username1.$touch"
-                    v-model.trim="loginUser.Username1" float-label="نام کاربری" />
-                  </q-field>
-
-                  
-                  <q-field :error="$v.loginUser.Password1.$error" error-label="لطفا یک رمز عبور صحیح وارد کنید">
-                    <q-input 
-                    @blur="$v.loginUser.Password1.$touch"
-                    v-model.trim="loginUser.Password1" type="password" float-label="رمز عبور" />
-                  </q-field>
-
-                  <div class="row q-my-md">
-
-                    <q-checkbox label="مرا به خاطر بسپار"  v-model="checked"/>
-
-                    <router-link to="/user/forgotpassword"  class="at-forget-pass">
-                      رمز عبورم را فراموش کرده ام
-                    </router-link>
-                    
-                  </div>
-
-                </div>
-
-                <div class="at-controls column justify-center items-center">
-                    <div class="q-my-sm">
-                      <q-btn 
-                      @click="login"
-                      class="at-login-btn">
-                        ورود
-                      </q-btn>
-                    </div>
-                    <div class="at-signup-btn q-my-sm">
-                      <p>
-                        هنوز در سایت ثبت نام نکرده اید؟
-                        <q-btn flat to="/user/register">
-                          ثبت نام در سایت
-                        </q-btn>
-                      </p>
-                    </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="col-3"></div>
-
-        </q-page-container>
-        
-
+      <div class="col-3"></div>
+    </q-page-container>
   </q-layout>
-
-  
 </template>
 
 <script lang="ts">
@@ -280,104 +197,100 @@ export default class UserLoginVue extends Vue {
     this.userStore.login(this);
   }
 
-  openModalRegister()
-  {
+  openModalRegister() {
     console.log(1);
     //this.userStore.resetRegisterModal();
     this.userStore.OPEN_MODAL_REGISTER(true);
   }
   isMobile() {
-   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-     return true
-   } else {
-     return false
-   }
- }
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   //--------------------------------------------------
 }
-
-  
 </script>
 
 <style>
-@font-face {
-    font-family: IRANSans;
-    font-style: normal;
-    font-weight: normal;
-    src: url('../../css/fonts/iran-sans-fa-num.woff2') format('woff2'),
-    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
-}
-
-@font-face {
-    font-family: IRANSans;
-    font-style: normal;
-    font-weight: bold;
-    src: url('../../css/fonts/iran-sans-fa-num-bold.woff2') format('woff2'),
-    url('../../css/fonts/iran-sans-fa-num.woff') format('woff');
-}
-
-body {
-    font-family: "IRANSans" !important;
-}
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-a{
+
+a {
   text-decoration: none;
 }
-.at-login{
+
+.at-login {
   margin: 4rem 0;
 }
-.at-login-ad{
+
+.at-login-ad {
   background-color: #1976d2;
   padding: 1rem 1.8rem;
   height: 100%;
 }
-.at-titr{
+
+.at-titr {
   color: #fff;
   font-weight: 700;
 }
-.at-description{
+
+.at-description {
   color: #b5ddfc;
 }
-.at-login-suggestion{
+
+.at-login-suggestion {
   margin-top: 10rem;
   font-weight: bold;
 }
-.at-login-suggestion a{
+
+.at-login-suggestion a {
   text-decoration: none;
   color: #fff;
 }
 
-.at-login-form{
+.at-login-form {
   color: #000;
-  background-color: #f6f6f6 ;
-  
+  background-color: #f6f6f6;
 }
-.at-login-form .q-input-target, .q-input-shadow {
+
+.at-login-form .q-input-target,
+.q-input-shadow {
   color: #3d3d3d;
 }
+
 .at-login-form .q-field-bottom {
   font-size: 10px;
 }
+
 .at-login-form .q-field-with-error .q-field-bottom,
 .at-login-form .q-if-error:not(.q-if-inverted) .q-if-label {
-  color:#e5310d;
+  color: #e5310d;
 }
-.at-back-btn{
+
+.at-back-btn {
   color: #e4015c;
   background-color: transparent;
 }
-.at-logo{
+
+.at-logo {
   width: 25%;
 }
-.at-logo img{
+
+.at-logo img {
   width: 100%;
   height: auto;
 }
-.at-titr-form{
+
+.at-titr-form {
   font-weight: bold;
   width: 100%;
   padding: 0 2rem;
@@ -385,41 +298,61 @@ a{
 
 .at-titr-x {
   font-size: 22px;
-  font-weight:bolder ;
- overflow: hidden;
- text-align: center;
+  font-weight: bolder;
+  overflow: hidden;
+  text-align: center;
 }
+
 .at-titr-x:before,
 .at-titr-x:after {
- background-color: #42a5f5;
- content: "";
- height: 1px;
- position: relative;
- vertical-align: middle;
- width: 50%;
+  background-color: #42a5f5;
+  content: "";
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
 }
+
 .at-titr-x:before {
- right: 0.5em;
- margin-left: -50%;
+  right: 0.5em;
+  margin-left: -50%;
 }
+
 .at-titr-x:after {
- left: 0.5em;
- margin-right: -50%;
+  left: 0.5em;
+  margin-right: -50%;
 }
-.at-forget-pass{
+
+.at-forget-pass {
   color: #e4015c;
   margin-left: auto;
 }
-.at-login-btn{
+
+.at-login-btn {
   background-color: #1976d2;
   color: #f7f7f7;
   border-radius: 1rem;
-  padding: .1rem 2.5rem;
-  font-size: 1.5rem;  
+  padding: 0.1rem 2.5rem;
+  font-size: 1.5rem;
 }
-.at-signup-btn .q-btn{
+
+.at-signup-btn .q-btn {
   color: #1976d2;
 }
+/* new edit */
+.q-if-inverted .q-if-label, .q-if-standard .q-if-label{
+	position:relative !important;
+}
+
+.q-field-with-error .q-field-bottom{
+	direction: ltr !important;
+}
+
+.at-forget-pass {
+    margin-left: 0 !important;
+    margin-right: 20px !important;
+}
+
 /* .login-layout {
   background-color: #034da2;
 }
@@ -484,7 +417,8 @@ a{
   background-image: url("../../assets/img/login_main.png");
   background-repeat: no-repeat;
   /* background-position: center; */
-  /* background-size: contain;
+
+/* background-size: contain;
   height: 731px;
   width: 732px;
   max-width: 100%;

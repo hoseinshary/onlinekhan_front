@@ -1,4 +1,4 @@
-import Vue from "Vue";
+import Vue from "vue";
 import IProvince, { DefaultProvince } from "src/models/IProvince";
 import IMessageResult from "src/models/IMessageResult";
 import axios, { AxiosResponse } from "src/plugins/axiosSSO";
@@ -27,7 +27,6 @@ export class ProvinceStore extends VuexModule {
    */
   constructor() {
     super();
-
     this.province = util.cloneObject(DefaultProvince);
     this._provinceList = [];
     this.openModal = {

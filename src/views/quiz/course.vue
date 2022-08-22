@@ -3,11 +3,10 @@
        <q-tabs v-model="selectedTab" class="bg-white corner-around col-md-12 " inverted animated color="indigo-8"  >
 
                   
-        <q-tab default v-for="lesson in this.assayCreate.Lessons" :key="lesson.Id" :name="lesson.Name" slot="title" :label="lesson.Name" class="bg-yellow-2"  />
+        <q-tab default v-for="lesson in this.assayCreate.Lessons" :key="lesson.Id" :name="lesson.Name" slot="title" :label="lesson.Name"  />
                   
         <q-tab-pane v-for="lesson in this.assayCreate.Lessons" :key="lesson.Id" :name="lesson.Name">
           <section class="row col-md-12">
-            <q-btn size="md" round dense color="secondary" icon="arrow_forward_ios" @click="checkList()" class="q-mr-xs" />
       <div class="col-md-12 shadow-1 q-ma-sm q-pa-sm">
          جابجایی ترتیب دروس 
          <q-btn size="md" round dense color="secondary" icon="arrow_forward_ios" @click="upList(lesson)" class="q-mr-xs" />
@@ -16,11 +15,7 @@
          <br/>
       <!-- <q-checkbox label="سوال تصادفی" v-model="assayCreate.RandomQuestion" />
       <br /> -->
-      <q-checkbox
-        label="نمایش جزئیات تعداد سوالات در هر مبحث"
-        v-model="assayStore.IsDetailTopic"
-        @input="topicWithDetail()"
-      />
+     
       <!-- <div class="row">
       <q-checkbox v-if="assayCreate.RandomQuestion == true" v-model="checked" label="Checkbox Label" />
     </div> -->
@@ -287,3 +282,51 @@ downList(lesson : AssayLesson )
 }
 </script>
 
+<style>
+.q-tree-node .q-tree-node-child{
+  padding-left: 0px !important; 
+  padding-right: 32px !important;
+  direction: rtl !important;
+}
+.q-tree-node .q-tree-node-child ::after{
+  content: none !important;
+}
+.q-tree-node .q-tree-node-child ::before{
+  content: none !important;
+}
+.q-tree-node .q-tree-node-parent ::after{
+  content: none !important;
+}
+.q-tree-node .q-tree-node-parent ::before{
+  content: none !important;
+}
+.q-tree-node .q-tree-children ::after{
+  content: none !important;
+}
+.q-tree-node .q-tree-children ::before{
+  content: none !important;
+}
+.q-tab .row{
+  width: 30% !important;
+}
+.q-tree .row{
+  flex-wrap: nowrap !important;
+  display: flex !important;
+  flex-direction: row !important;
+}
+.q-option{
+  width: 50px !important;
+}
+.q-option-inner{
+  width:20px !important
+}
+.row > .q-tab
+{
+  width: 20% !important;
+  background-color: #1976d2;
+  color: white !important;
+}
+.q-btn-dense.q-btn-round {
+  background-color: #06a971 !important;
+}
+</style>

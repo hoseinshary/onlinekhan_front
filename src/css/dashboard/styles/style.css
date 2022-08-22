@@ -1,8 +1,22 @@
 /* ////////////////// FONTS //////////////////////// */
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../../fonts/iran-sans-fa-num.woff2') format('woff2'),
+    url('../../fonts/iran-sans-fa-num.woff') format('woff');
+}
 
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../../fonts/iran-sans-fa-num-bold.woff2') format('woff2'),
+    url('../../fonts/iran-sans-fa-num.woff') format('woff');
+}
 
 body {
-    font-family: Arial, Helvetica, sans-serif !important;
+    font-family: "IRANSans", Arial, Helvetica, sans-serif !important;
     width: calc(100% - 5.4rem);
 }
 
@@ -71,7 +85,54 @@ a {
 .height-100 {
     height: 100px;
 }
+/* bootstrap convert to css */
+/* 
+.m-1{
+    margin: 2px;
+}
+.m-2{
+    margin: 4px;
+}
+.m-3{
+    margin: 6px;
+}
+.m-4{
+    margin: 8px;
+}
 
+.me-1{
+    margin-right: 2px;
+}
+.me-2{
+    margin-right: 4px;
+}
+.me-4{
+    margin-right: 8px;
+}
+.me-5{
+    margin-right: 10px;
+}
+
+.ms-1{
+    margin-left: 2px;
+}
+.ms-3{
+    margin-left: 6px;
+}
+
+.p-1{
+    padding: 2px;
+}
+.p-2{
+    padding: 4px;
+}
+.p-3{
+    padding: 6px;
+}
+.p-4{
+    padding: 8px;
+} */
+/* bootstrap convert to css end*/
 .mt-6 {
     margin-top: 2rem;
 }
@@ -325,6 +386,13 @@ a {
 .c-3d3d3d {
     color: #3d3d3d;
 }
+.bg-504f4f {
+    background-color: #504f4f;
+}
+
+.c-504f4f {
+    color: #504f4f;
+}
 
 .bg-969696 {
     background-color: #969696;
@@ -345,11 +413,25 @@ a {
 .bg-f2f2f2 {
     background-color: #f2f2f2;
 }
+.bg-f6f6f6{
+    background-color: #f6f6f6;
+}
 
 .c-f2f2f2 {
     color: #f2f2f2;
 }
-
+.bg-0a6d4ae7{
+    background-color: #0a6d4ae7;
+}
+.c-0a6d4ae7{
+    color: #0a6d4ae7;
+}
+.bg-ffee00{
+    background-color: #ffee00;
+}
+.c-ffee00{
+    color: #ffee00;
+}
 .bg-1976d2 {
     background-color: #1976d2;
 }
@@ -398,6 +480,18 @@ a {
 
 .zi-3 {
     z-index: 3;
+}
+
+.q-if-baseline{
+    width:0px;
+}
+.q-if-inner{
+    display: inline !important;
+    width: 200px !important;
+}
+.q-icon {
+    /* display: inline !important; */
+    width: 20px !important;
 }
 /* //////////////////////////////////////////////////////////// */
 
@@ -522,9 +616,30 @@ a {
 } */
 
 /* ///////////////////////  total dashboard /////////////////////////////// */
+
 .g-dashboard {
     font-weight: bold;
 }
+/* bootstrap convert to css */
+/* .d-flex{
+    display: flex;
+}
+.flex-row{
+    flex-direction: row;
+}
+.flex-column{
+    flex-direction: column;
+}
+.d-block{
+    display: block;
+}
+.justify-content-center{
+    justify-content: center;
+}
+.align-items-center{
+    align-items: center;
+} */
+/* bootstrap convert to css */
 
 .border-title-blue {
     background-color: #1976d2;
@@ -1239,3 +1354,133 @@ body.shrink .c-tooltip .c-tooltip-text {
     }
 }
 /* ///////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* bootstrap convert to css */
+/* 
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 718px) {
+  .container,
+  .container-sm {
+    max-width: 540px;
+  }
+}
+@media (min-width: 1024px) {
+  .container,
+  .container-sm,
+  .container-md {
+    max-width: 920px;
+  }
+}
+@media (min-width: 1439px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1920px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 1440px;
+  }
+}
+
+.padding-xs { padding: .25em; }
+.padding-sm { padding: .5em; }
+.padding-md { padding: 1em; }
+.padding-lg { padding: 1.5em; }
+.padding-xl { padding: 3em; }
+
+.padding-x-xs { padding: .25em 0; }
+.padding-x-sm { padding: .5em 0; }
+.padding-x-md { padding: 1em 0; }
+.padding-x-lg { padding: 1.5em 0; }
+.padding-x-xl { padding: 3em 0; }
+
+.padding-y-xs { padding: 0 .25em; }
+.padding-y-sm { padding: 0 .5em; }
+.padding-y-md { padding: 0 1em; }
+.padding-y-lg { padding: 0 1.5em; }
+.padding-y-xl { padding: 0 3em; }
+
+.padding-top-xs { padding-top: .25em; }
+.padding-top-sm { padding-top: .5em; }
+.padding-top-md { padding-top: 1em; }
+.padding-top-lg { padding-top: 1.5em; }
+.padding-top-xl { padding-top: 3em; }
+
+.padding-right-xs { padding-right: .25em; }
+.padding-right-sm { padding-right: .5em; }
+.padding-right-md { padding-right: 1em; }
+.padding-right-lg { padding-right: 1.5em; }
+.padding-right-xl { padding-right: 3em; }
+
+.padding-bottom-xs { padding-bottom: .25em; }
+.padding-bottom-sm { padding-bottom: .5em; }
+.padding-bottom-md { padding-bottom: 1em; }
+.padding-bottom-lg { padding-bottom: 1.5em; }
+.padding-bottom-xl { padding-bottom: 3em; }
+
+.padding-left-xs { padding-left: .25em; }
+.padding-left-sm { padding-left: .5em; }
+.padding-left-md { padding-left: 1em; }
+.padding-left-lg { padding-left: 1.5em; }
+.padding-left-xl { padding-left: 3em; }
+
+.margin-xs { margin: .25em; }
+.margin-sm { margin: .5em; }
+.margin-md { margin: 1em; }
+.margin-lg { margin: 1.5em; }
+.margin-xl { margin: 3em; }
+
+.margin-x-xs { margin: .25em 0; }
+.margin-x-sm { margin: .5em 0; }
+.margin-x-md { margin: 1em 0; }
+.margin-x-lg { margin: 1.5em 0; }
+.margin-x-xl { margin: 3em 0; }
+
+.margin-y-xs { margin: 0 .25em; }
+.margin-y-sm { margin: 0 .5em; }
+.margin-y-md { margin: 0 1em; }
+.margin-y-lg { margin: 0 1.5em; }
+.margin-y-xl { margin: 0 3em; }
+
+.margin-top-xs { margin-top: .25em; }
+.margin-top-sm { margin-top: .5em; }
+.margin-top-md { margin-top: 1em; }
+.margin-top-lg { margin-top: 1.5em; }
+.margin-top-xl { margin-top: 3em; }
+
+.margin-right-xs { margin-right: .25em; }
+.margin-right-sm { margin-right: .5em; }
+.margin-right-md { margin-right: 1em; }
+.margin-right-lg { margin-right: 1.5em; }
+.margin-right-xl { margin-right: 3em; }
+
+.margin-bottom-xs { margin-bottom: .25em; }
+.margin-bottom-sm { margin-bottom: .5em; }
+.margin-bottom-md { margin-bottom: 1em; }
+.margin-bottom-lg { margin-bottom: 1.5em; }
+.margin-bottom-xl { margin-bottom: 3em; }
+
+.margin-left-xs { margin-left: .25em; }
+.margin-left-sm { margin-left: .5em; }
+.margin-left-md { margin-left: 1em; }
+.margin-left-lg { margin-left: 1.5em; }
+.margin-left-xl { margin-left: 3em; }/* 
+/* bootstrap convert to css  end*/
+a {
+    text-decoration: none !important;
+}

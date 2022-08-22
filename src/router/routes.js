@@ -325,7 +325,18 @@ export default [
         path: "/reportQuestion",
         name: "REPORT",
         component: () => import("../views/report/reportBaseQuestion.vue")
+      },
+      {
+        path: "/report",
+        name: "REPORT",
+        component: () => import("../views/report/karnamesade.vue")
+      },
+      {
+        path: "/runtest",
+        name: "REPORT",
+        component: () => import("../views/report/runTest.vue")
       }
+      
       
       
     ]

@@ -16,40 +16,7 @@
         <!-- Fateme Tekrar -bill-start -->
         <section class="container-xxl bill">
           <div class="row">
-            <div class="col-md-3 col-sm-12 wallet-question">
-              <!-- باکس مشاهده آزمون های من -->
-              <a href="#">
-                <div class=" d-flex flex-row justify-content-around p-3 text-white myTests align-items-center br-10">
-                  <i class="fa fa-download text-white " ria-hidden=" true"></i>
-                  مشاهده آزمون های من
-                </div>
-              </a>
-              <!-- باکس مشاهده گزارش آزمون -->
-              <a href="#">
-                <div
-                  class=" d-flex flex-row justify-content-around p-3 module-border-wrap align-items-center c-1976d2 br-10">
-                  <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                  گزارش آزمون
-                </div>
-              </a>
-
-             
-
-              <!-- باکس سئوالی داشتم -->
-              <section>
-                <p class="question-title font-16">
-                  ... سوالی داشتم
-                </p>
-                <p class="question-text font-12">من اینجا هستم تا تو را راهنمایی کنم
-                  بنابراین اگر هر سوالی داری
-                  برایم ارسال کن
-                </p>
-                <button class="btn btn-success text-white mb-3" type="submit" id="question-send">
-                  ارسال
-                </button>
-              </section>
-            </div>
-            <div class="col-md-9 col-sm-12 p-0">
+            <div class="col-sm-12 p-0">
               <!--fateme tekrar tags-start-->
               <section class="col d-flex flex-row justify-content-between mb-3 mt-2 tagsContainer">
                
@@ -119,13 +86,6 @@
                       </section>
                       <section class="d-flex flex-row mt-9 submit-group align-items-center justify-content-between"
                         id="submit-group">
-                        <button class="btn btn-secondary text-white px-3 py-2 m-0 disabled font-14"
-                          id="student-group-select" disabled>
-                          <i class="fa fa-chevron-right m-0 p-0" aria-hidden="true"></i>
-                          <i class="fa fa-chevron-right ms-1 p-0" aria-hidden="true"></i>
-                          انتخاب گروه دانش آموزی
-
-                        </button>
                         <button @click="goToCourse()" class="btn btn-success text-white px-3 py-2 m-0 disabled font-14"
                           id="test-lesson-select" disabled>
                           تائید درس آزمون
@@ -142,11 +102,7 @@
                   aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
-                      <div class="modal-header border-0 bg-success position-relative text-white font-14">
-                        تایید نهایی
-                        <i class=" fa-light fa-times text-white fs-5 bg-success close-btn position-absolute"
-                          data-bs-dismiss="modal"></i>
-                      </div>
+                      
                       <div class="modal-body d-flex flex-column m-2 font-14" id="studentGroupConfirmDataParent">
                         هنوز درسی انتخاب نشده است
                       </div>
@@ -161,8 +117,7 @@
                   </div>
                 </div>
                 <!--MODAL-->
-                <button class="btn btn-success mt-2 font-12" id="finalConfirmButton" aria-hidden="true"
-                  data-bs-toggle="modal" data-bs-target="#finalConfirm">تایید نهایی</button>
+                
               </div>
               <!--next-->
               <div v-if="this.state == 1" class="mainLayout bg-f2f2f2">
@@ -173,11 +128,7 @@
                       <div class="m-2">
                         <i class="fa fa-star d-inline" aria-hidden="true"></i>
                         <div class="fw-bold d-inline">
-                          مباحث مورد نظر خود را از
-                          دروس
-                          <span class="color-green">ریاضی 1</span>
-                          و
-                          <span class="color-green">فیزیک1</span>
+                          مباحث مورد نظر خود را
                           انتخاب بفرمایید:
                         </div>
                       </div>
@@ -208,13 +159,7 @@
                       </section>
                       <section  class="d-flex flex-row mt-9 submit-group align-items-center justify-content-between"
                         id="submit-group">
-                        <button   class="btn btn-secondary text-white px-3 py-2 m-0 disabled font-14"
-                          id="student-group-select" disabled>
-                          <i class="fa fa-chevron-right m-0 p-0" aria-hidden="true"></i>
-                          <i class="fa fa-chevron-right ms-1 p-0" aria-hidden="true"></i>
-                          انتخاب درس آزمون
-
-                        </button>
+                       
                         <button @click="goToQuestion()" class="btn btn-success text-white px-3 py-2 m-0 font-14"
                           id="test-lesson-select">تائید مباحث آزمون
                           <i class="fa fa-chevron-left me-1 p-0" aria-hidden="true"></i>
@@ -230,11 +175,7 @@
                   aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
-                      <div class="modal-header border-0 bg-success position-relative text-white font-14">
-                        تایید نهایی
-                        <i class=" fa-light fa-times text-white fs-5 bg-success close-btn position-absolute"
-                          data-bs-dismiss="modal"></i>
-                      </div>
+                      
                       <div class="modal-body d-flex flex-column m-2 font-14" id="studentGroupConfirmDataParent">
                         هنوز درسی انتخاب نشده است
                       </div>
@@ -249,8 +190,7 @@
                   </div>
                 </div>
                 <!--MODAL-->
-                <button class="btn btn-success mt-2 font-12" id="finalConfirmButton" aria-hidden="true"
-                  data-bs-toggle="modal" data-bs-target="#finalConfirm">تایید نهایی</button>
+                
               </div>
               <!--end-->
               <div v-if="this.state == 2" class="mainLayout bg-f2f2f2">
@@ -290,13 +230,7 @@
                       </section>
                       <section class="d-flex flex-row mt-9 submit-group align-items-center justify-content-between"
                         id="submit-group">
-                        <button class="btn btn-secondary text-white px-3 py-2 m-0 disabled font-14"
-                          id="student-group-select" disabled>
-                          <i class="fa fa-chevron-right m-0 p-0" aria-hidden="true"></i>
-                          <i class="fa fa-chevron-right ms-1 p-0" aria-hidden="true"></i>
-                          انتخاب مبحث آزمون
-
-                        </button>
+                        
                         <button @click="goToSubmit()" class="btn btn-success text-white px-3 py-2 m-0 font-14"
                           id="test-lesson-select">تائید سئوالات آزمون
                           <i class="fa fa-chevron-left me-1 p-0" aria-hidden="true"></i>
@@ -312,11 +246,7 @@
                   aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
-                      <div class="modal-header border-0 bg-success position-relative text-white font-14">
-                        تایید نهایی
-                        <i class=" fa-light fa-times text-white fs-5 bg-success close-btn position-absolute"
-                          data-bs-dismiss="modal"></i>
-                      </div>
+                     
                       <div class="modal-body d-flex flex-column m-2 font-14" id="studentGroupConfirmDataParent">
                         هنوز درسی انتخاب نشده است
                       </div>
@@ -331,8 +261,7 @@
                   </div>
                 </div>
                 <!--MODAL-->
-                <button class="btn btn-success mt-2 font-12" id="finalConfirmButton" aria-hidden="true"
-                  data-bs-toggle="modal" data-bs-target="#finalConfirm">تایید نهایی</button>
+                
               </div>
               <div v-if="this.state == 3" class="mainLayout bg-f2f2f2">
                 <!--fateme tekrar-->
@@ -372,18 +301,7 @@
                       </section>
                       <section class="d-flex flex-row mt-9 submit-group align-items-center justify-content-between"
                         id="submit-group">
-                        <button class="btn btn-secondary text-white px-3 py-2 m-0 disabled font-14"
-                          id="student-group-select" disabled>
-                          <i class="fa fa-chevron-right m-0 p-0" aria-hidden="true"></i>
-                          <i class="fa fa-chevron-right ms-1 p-0" aria-hidden="true"></i>
-                          انتخاب سئوالات آزمون
 
-                        </button>
-                        <button class="btn btn-success text-white px-3 py-2 m-0 font-14"
-                          id="test-lesson-select">ثبت نهایی آزمون
-                          <i class="fa fa-chevron-left me-1 p-0" aria-hidden="true"></i>
-                          <i class="fa fa-chevron-left m-0 p-0" aria-hidden="true"></i>
-                        </button>
                       </section>
                     </div>
                   </div>
@@ -394,11 +312,7 @@
                   aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
-                      <div class="modal-header border-0 bg-success position-relative text-white font-14">
-                        تایید نهایی
-                        <i class=" fa-light fa-times text-white fs-5 bg-success close-btn position-absolute"
-                          data-bs-dismiss="modal"></i>
-                      </div>
+                    
                       <div class="modal-body d-flex flex-column m-2 font-14" id="studentGroupConfirmDataParent">
                         هنوز درسی انتخاب نشده است
                       </div>
@@ -413,8 +327,7 @@
                   </div>
                 </div>
                 <!--MODAL-->
-                <button class="btn btn-success mt-2 font-12" id="finalConfirmButton" aria-hidden="true"
-                  data-bs-toggle="modal" data-bs-target="#finalConfirm">تایید نهایی</button>
+                
               </div>
 
             </div>

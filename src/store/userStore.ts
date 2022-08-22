@@ -1,4 +1,4 @@
-import Vue from "Vue";
+import Vue from "vue";
 import IUser, { DefaultUser } from "src/models/IUser";
 import IUserChangePassword, { DefaultUserChangePassword } from "src/models/IUserChangePassword";
 import ILogin, { DefaultLogin } from "src/models/ILogin";
@@ -19,6 +19,7 @@ import { LocalStorage } from "quasar";
 import router from "src/router";
 import { runInThisContext } from "vm";
 import { log } from "console";
+import { Notify } from 'quasar'
 
 @Module({ namespacedPath: "userStore/" })
 export class UserStore extends VuexModule {
@@ -218,6 +219,7 @@ export class UserStore extends VuexModule {
     return axios
       .get(`${baseUrl}/GetUserData`)
       .then((response: AxiosResponse<IUser>) => {
+        console.log(response.data)
         util.mapObject(response.data, this.user);
       });
   }
@@ -397,7 +399,33 @@ export class UserStore extends VuexModule {
       .post(`${baseUrl}/UpdateUser`, this.user)
       .then((response: AxiosResponse<IMessageResult>) => {
         let data = response.data;
+        console.log("Here");
         this.notify({ vm, data });
+  
+        if (data.MessageType == MessageType.Success) {
+          this.UPDATE(data.Obj);
+          this.OPEN_MODAL_UPDATE_USER_VUE(false);
+          this.MODEL_CHANGED(true);
+          this.resetUpdateUser();
+        }
+      });
+  }
+
+  @action()
+  async submitUpdateUserCustom() {
+    return axios
+      .post(`${baseUrl}/UpdateUser`, this.user)
+      .then((response: AxiosResponse<IMessageResult>) => {
+        let data = response.data;
+        console.log("Here");
+        Notify.create({
+          progress: true,
+          message:   'اطلاعات کاربری شما با موفقیت ثبت شد',
+          color: 'green',
+          // actions: [
+          //   { label: 'رفتن به سبد خرید', color: 'yellow', handler: () => { router.push('/shoppingbag') } }
+          // ]
+        })
 
         if (data.MessageType == MessageType.Success) {
           this.UPDATE(data.Obj);
@@ -433,6 +461,38 @@ export class UserStore extends VuexModule {
   async submitUpdateUserImage() {
     
     let vm = this._updateUserImageVue;
+    var formData = new FormData();
+    var fileUpload = vm.$refs.fileUpload;
+
+    if (fileUpload && fileUpload["files"].length > 0) {
+      formData.append(fileUpload["name"], fileUpload["files"][0]);
+    }
+    else
+    {
+      await this.notify({vm , data : {Message : "فایل باید وارد شود." , MessageType : MessageType.Error ,Obj : null }})
+      return ;
+    }
+    return axios({
+      method: "post",
+      url: `${baseUrl}/UpdateUserImage`,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" }
+    }).then((response: AxiosResponse<IMessageResult>) => {
+        let data = response.data;
+        this.notify({ vm, data });
+
+        if (data.MessageType == MessageType.Success) {
+          this.OPEN_MODAL_UPDATE_USER_IMAGE_VUE(false);
+          this.resetUpdateUserImage(); 
+
+        }
+      });
+  }
+
+  @action()
+  async submitUpdateUserImageCustom(v:Vue) {
+    
+    let vm = v;
     var formData = new FormData();
     var fileUpload = vm.$refs.fileUpload;
 
@@ -513,7 +573,7 @@ export class UserStore extends VuexModule {
           LocalStorage.set("ProfilePic", data.ProfilePic);
           LocalStorage.set("IsTeacher",data.IsTeacher);
           
-          router.push("/dashboard");
+          router.push("/studentmajorlist");
         } else {
           this.notify({ vm, data });
         }

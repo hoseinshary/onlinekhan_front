@@ -1,6 +1,6 @@
 <template>
-  <section class="col-sm-6"
-           style="height:50px">
+  <section class="col-sm-6 mb-3"
+           style="height:50px;">
     <q-input v-model="key"
              float-label="جستجو"
              clearable

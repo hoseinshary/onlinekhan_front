@@ -103,10 +103,16 @@ export enum Field {
 export enum HistoryAssay {
   
   "با آزمون" = 1,
-  "صرفاًباسوابق تحصیلی" = 2
+  "صرفاً با سوابق تحصیلی" = 2
 
 }
+export enum CourseAssay {
+  
+  "شهریه پرداز" = 1,
+  "روزانه" = 2,
+  "نوبت دوم" = 3,
 
+}
 export enum Degree {
   // ZireDiplom = 0,
   // Diplom = 1,

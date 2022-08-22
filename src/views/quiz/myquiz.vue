@@ -18,7 +18,7 @@
         <div class="col-12 col-md-4 col-lg-4 col-xl-3 col-xxl-2 mb-4">
           <div class="c-card d-flex overflow-hidden bg-gradient h-100">
             <div class="w-100 py-4">
-              <a href="#" class="d-block w-100 h-100 d-flex justify-content-center align-items-center gap-2">
+              <a href="/quiz/lesson" class="d-block w-100 h-100 d-flex justify-content-center align-items-center gap-2">
                 <i class="fa-light fa-circle-plus text-white fs-3"></i>
                 <span class="text-white font-16">ساخت آزمون</span>
               </a>
@@ -158,7 +158,7 @@
                           <div class="py-2 bg-gray br-10 text-center d-flex px-2 align-items-center">
                             <span>عملیات مرتبط با آزمون</span>
 
-                            <a @click="runAssay(modalData.Id)" data-bs-dismiss="modal" style="cursor:pointer" class="color-dark me-auto px-1">
+                            <a @click="result(modalData.Id)" data-bs-dismiss="modal" style="cursor:pointer" class="color-dark me-auto px-1">
                               <i class="fa-solid fa-play-pause"></i>
                             </a>
 
@@ -257,8 +257,7 @@
               </div>
             </div>
             <div class="row">
-             <div v-for="assay in assays" :key="assay.Id">
-              <div v-if="(checkedQuestionType.length === 0 || checkedQuestionType.some(data => data === assay.LookupId_QuestionType)) &&(checkedType.length === 0 || checkedType.some(data => data === assay.LookupId_Type)) &&(checkedImportance.length === 0 || checkedImportance.some(data => data === assay.LookupId_Importance))" class="col-12 col-md-12 col-lg-6 col-xl-4 col-xxl-3 mb-4">
+              <div v-for="assay in assays" :key="assay.Id" class="col-12 col-md-12 col-lg-6 col-xl-4 col-xxl-3 mb-4">
                 <div class="detail-course bg-gradient p-1 br-10">
                   <div class="bg-white d-flex flex-column p-1 br-10">
                     <span class="color-blue font-14 text-center">{{assay.Title}}</span>
@@ -296,7 +295,7 @@
                         <span class="font-12 color-green">در حال برگزاری</span>
                       </div>
                       <div class="w-50 d-flex justify-content-center">
-                        <span class="font-12 text-white bg-green px-4 py-1 rounded-5">اجرای آزمون</span>
+                        <span @click="runAssay(assay.Id)" style="cursor:pointer;" class="font-12 text-white bg-green px-4 py-1 rounded-5">اجرای آزمون</span>
                       </div>
                     </div>
                   </div>
@@ -311,7 +310,6 @@
                 </div>
               </div>
 
-             </div>
             </div>
           </div>
             
@@ -332,9 +330,9 @@ import { assayStore } from "src/store/assayStore";
 import { Notify } from 'quasar'
 
 export default ({
- 
     data() {
          return {
+            assayAnswerSheetStore : vxm.assayAnswerSheetStore,
            assays:{},
            modalData:{
     "Id": 5,
@@ -1019,6 +1017,13 @@ export default ({
        runAssay(id){
     this.assayStore.getById(id);
     router.push("/assay/runAssay");
+
+  
+  },
+  result(id){
+      this.assayAnswerSheetStore = vxm.assayAnswerSheetStore;
+      console.log("Here");
+    this.assayAnswerSheetStore.goToResultAssay(id);
 
   
   }

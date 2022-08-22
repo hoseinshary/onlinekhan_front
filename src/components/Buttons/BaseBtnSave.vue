@@ -11,7 +11,7 @@ export default {};
 <style>
 .s-btn-save {
   font-weight: bold;
-  background-color: #b41e8e;
+  background-color: #17d292;
   color: white;
   margin-right: 6px;
 }

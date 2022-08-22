@@ -257,7 +257,12 @@ export class AssayAnswerSheetStore extends VuexModule {
       { root: true }
     );
   }
-
+  @action()
+  async goToResultAssay(id:number)
+  { 
+    this.assayAnswerSheet.Id = id ;
+    router.push("/report");
+  }
   @action()
   async submitCreate() {
     
@@ -278,8 +283,8 @@ export class AssayAnswerSheetStore extends VuexModule {
           this.assayAnswerSheetResult = data.Obj;
 
           if(data.Id)
-           this.assayAnswerSheet.Id = data.Id ;
-          router.push("/assay/resualtAssay");
+           this.assayAnswerSheet.Id = this.assayAnswerSheet.AssayId ;
+          router.push("/report");
           //this.OPEN_MODAL_RESUALT(true);
           //console.log(data.Id);
           //console.log(this.assayAnswerSheetResult);
